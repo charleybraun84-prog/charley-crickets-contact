@@ -46,16 +46,16 @@ const DIRECT_CONTACT = {
   name: 'Charley Braun',
   avatarInitial: 'CB',
   title: 'Swimming Pool Department Manager',
-  company: "Cricket's Pool and Spa World, Inc.",
-  storePhone: '(337) 984-7626',
-  storePhoneRaw: '+13379847626',
-  directCell: '(337) 984-7626',        // 👈 Paste your direct cell here
-  directCellRaw: '+13379847626',       // 👈 Format: +13370000000
-  email: 'charley@poolandspaworld.net', // 👈 Paste your direct email here
-  website: 'https://poolandspaworld.net',
+  company: "Cricket's Pool And Spa World, Inc.",
+  workPhone: '(337) 984-7626',          // Company textable line
+  workPhoneRaw: '+13379847626',
+  mobilePhone: '(337) 577-9224',        // Selectable to only share with certain contacts
+  mobilePhoneRaw: '+13375779224',
+  email: 'charley@poolandspaworld.net',
+  website: 'http://poolandspaworld.net/',
   address: '1100 Rue du Belier, Lafayette, LA 70506',
-  facebook: 'https://www.facebook.com/', // 👈 Paste store Facebook page URL
-  instagram: 'https://www.instagram.com/' // 👈 Paste Instagram profile URL
+  facebook: 'https://www.facebook.com/profile.php?id=100039496489824',
+  instagram: 'https://www.instagram.com/cricketspoolandspaworld/'
 };
 ```
 

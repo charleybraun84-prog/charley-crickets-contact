@@ -9,30 +9,38 @@
 
   /* ==========================================================================
      DIRECT CONTACT DETAILS & CONFIGURATION
-     👉 Cell Phone: (337) 577-9224
-     👉 Store Phone: (337) 984-7626
-     👉 Location: 1100 Rue du Belier, Lafayette, LA 70506
+     👉 Business Name: Cricket's Pool And Spa World, Inc.
+     👉 Address: 1100 Rue du Belier, Lafayette, LA 70506
+     👉 Work Phone: (337) 984-7626 (Company textable line)
+     👉 Mobile Phone: (337) 577-9224 (Selectable to only share with certain contacts)
+     👉 Website: http://poolandspaworld.net/
+     👉 Facebook: https://www.facebook.com/profile.php?id=100039496489824
+     👉 Instagram: https://www.instagram.com/cricketspoolandspaworld/
      ========================================================================== */
   const DIRECT_CONTACT = {
     name: 'Charley Braun',
     avatarInitial: 'CB',
     title: 'Swimming Pool Department Manager',
-    company: "Cricket's Pool and Spa World, Inc.",
+    company: "Cricket's Pool And Spa World, Inc.",
     companySubtitle: 'The Backyard Place',
-    storePhone: '(337) 984-7626',
+    workPhone: '(337) 984-7626',          // Work Phone (Company textable line)
+    workPhoneRaw: '+13379847626',
+    storePhone: '(337) 984-7626',         // Alias for store/office line
     storePhoneRaw: '+13379847626',
-    directCell: '(337) 577-9224',        // 👈 Charley's direct personal mobile
-    directCellRaw: '+13375779224',       // 👈 Format for tel: and vCard
-    email: 'charley@poolandspaworld.net', // 👈 Work email
-    website: 'https://poolandspaworld.net',
+    mobilePhone: '(337) 577-9224',        // Mobile Phone (selectable to only share with certain contacts)
+    mobilePhoneRaw: '+13375779224',
+    directCell: '(337) 577-9224',         // Alias
+    directCellRaw: '+13375779224',
+    email: 'charley@poolandspaworld.net', // Work email
+    website: 'http://poolandspaworld.net/',
     address: '1100 Rue du Belier, Lafayette, LA 70506',
     hours: 'Mon–Fri 8:00 AM – 4:00 PM • Sat–Sun Closed',
-    googleReviews: 'https://maps.google.com/?q=Cricket%27s+Pool+and+Spa+World+1100+Rue+du+Belier+Lafayette+LA',
-    facebook: 'https://www.facebook.com/', // 👈 Store Facebook page URL
-    instagram: 'https://www.instagram.com/' // 👈 Store Instagram profile URL
+    googleReviews: 'https://maps.google.com/?q=Cricket%27s+Pool+And+Spa+World+1100+Rue+du+Belier+Lafayette+LA',
+    facebook: 'https://www.facebook.com/profile.php?id=100039496489824',
+    instagram: 'https://www.instagram.com/cricketspoolandspaworld/'
   };
 
-  // State: Direct Cell Phone Sharing (Defaults to FALSE for privacy)
+  // State: Direct Mobile Phone Sharing (Defaults to FALSE for privacy / selectable sharing)
   let shareCellPhone = false;
 
   // Check URL parameters: e.g. ?cell=1, ?vip=1, ?direct=1 or #cell
@@ -62,10 +70,11 @@
         { icon: 'tool', text: 'Warranty Center' }
       ],
       socials: [
-        { label: 'Store Phone', sub: DIRECT_CONTACT.storePhone, url: `tel:${DIRECT_CONTACT.storePhoneRaw}`, icon: 'phone' },
+        { label: 'Work Phone', sub: DIRECT_CONTACT.workPhone, url: `tel:${DIRECT_CONTACT.workPhoneRaw}`, icon: 'phone' },
         { label: 'Store Website', sub: 'poolandspaworld.net', url: DIRECT_CONTACT.website, icon: 'globe' },
-        { label: 'Google 4.3★', sub: 'Verified Store Reviews', url: DIRECT_CONTACT.googleReviews, icon: 'star' },
-        { label: 'Facebook', sub: "Cricket's Pool & Spa", url: DIRECT_CONTACT.facebook, icon: 'facebook' }
+        { label: 'Facebook', sub: "Cricket's Pool & Spa", url: DIRECT_CONTACT.facebook, icon: 'facebook' },
+        { label: 'Instagram', sub: "@cricketspoolandspaworld", url: DIRECT_CONTACT.instagram, icon: 'instagram' },
+        { label: 'Google 4.3★', sub: 'Verified Store Reviews', url: DIRECT_CONTACT.googleReviews, icon: 'star' }
       ],
       links: [
         {
@@ -83,34 +92,34 @@
         {
           label: 'Free Computerized Water Testing',
           sub: 'Bring your pool water sample to 1100 Rue du Belier for computerized analysis',
-          url: 'https://poolandspaworld.net/services',
+          url: 'http://poolandspaworld.net/services',
           icon: 'droplet',
           badge: 'Free Test'
         },
         {
           label: 'Maytronics Dolphin Cleaners & Service',
           sub: 'Elite dealer in Lafayette — robot sales, diagnostics & certified parts',
-          url: 'https://poolandspaworld.net/services',
+          url: 'http://poolandspaworld.net/services',
           icon: 'tool',
           badge: 'Elite Dealer'
         },
         {
           label: 'Pool Chemicals & Sanitizers',
           sub: 'Poolife chlorine, shock, algaecides & Hayward salt cell systems',
-          url: 'https://poolandspaworld.net/poolife',
+          url: 'http://poolandspaworld.net/poolife',
           icon: 'droplet',
           badge: 'Supplies'
         },
         {
           label: 'Equipment Warranty & Repair Center',
           sub: 'Authorized service: Maytronics, Hayward, Pentair, Jandy & Polaris',
-          url: 'https://poolandspaworld.net/services',
+          url: 'http://poolandspaworld.net/services',
           icon: 'tool',
           badge: 'Service'
         },
         {
           isDivider: true,
-          label: 'Store Info & Reviews'
+          label: 'Store Info & Socials'
         },
         {
           label: 'Store Location, Hours & Google Reviews',
@@ -122,11 +131,19 @@
         },
         {
           label: 'Cricket’s Pool & Spa Facebook Page',
-          sub: 'Follow for store promotions, maintenance guides & updates',
+          sub: 'Follow on Facebook for store promotions, maintenance guides & updates',
           url: DIRECT_CONTACT.facebook,
           icon: 'facebook',
           channelClass: 'link--facebook',
-          badge: 'Connect'
+          badge: 'Facebook'
+        },
+        {
+          label: 'Cricket’s Pool & Spa Instagram Profile',
+          sub: '@cricketspoolandspaworld — Photos, pool builds & announcements',
+          url: DIRECT_CONTACT.instagram,
+          icon: 'instagram',
+          channelClass: 'link--instagram',
+          badge: 'Instagram'
         }
       ],
       defaultCategory: 'Water Testing & Chemicals'
@@ -147,17 +164,18 @@
         { icon: 'sun', text: 'Showroom Displays' }
       ],
       socials: [
-        { label: 'Store Phone', sub: DIRECT_CONTACT.storePhone, url: `tel:${DIRECT_CONTACT.storePhoneRaw}`, icon: 'phone' },
-        { label: 'Spas Showroom', sub: 'poolandspaworld.net/spas', url: 'https://poolandspaworld.net/swimming-pool-products/spas', icon: 'spa' },
-        { label: 'Google 4.3★', sub: 'Verified Store Reviews', url: DIRECT_CONTACT.googleReviews, icon: 'star' },
-        { label: 'Facebook', sub: "Cricket's Pool & Spa", url: DIRECT_CONTACT.facebook, icon: 'facebook' }
+        { label: 'Work Phone', sub: DIRECT_CONTACT.workPhone, url: `tel:${DIRECT_CONTACT.workPhoneRaw}`, icon: 'phone' },
+        { label: 'Spas Showroom', sub: 'poolandspaworld.net/spas', url: 'http://poolandspaworld.net/swimming-pool-products/spas', icon: 'spa' },
+        { label: 'Facebook', sub: "Cricket's Pool & Spa", url: DIRECT_CONTACT.facebook, icon: 'facebook' },
+        { label: 'Instagram', sub: "@cricketspoolandspaworld", url: DIRECT_CONTACT.instagram, icon: 'instagram' },
+        { label: 'Google 4.3★', sub: 'Verified Store Reviews', url: DIRECT_CONTACT.googleReviews, icon: 'star' }
       ],
       links: [
         {
           featured: true,
           label: 'Hot Tubs & Spas Showroom',
           sub: 'poolandspaworld.net/swimming-pool-products/spas — Explore models',
-          url: 'https://poolandspaworld.net/swimming-pool-products/spas',
+          url: 'http://poolandspaworld.net/swimming-pool-products/spas',
           icon: 'spa',
           badge: 'Showroom'
         },
@@ -168,27 +186,27 @@
         {
           label: 'FreeFlow Spas Collection',
           sub: 'Plug-and-play, durable rotomolded energy-efficient hot tubs',
-          url: 'https://poolandspaworld.net/swimming-pool-products/spas',
+          url: 'http://poolandspaworld.net/swimming-pool-products/spas',
           icon: 'sun',
           badge: 'FreeFlow'
         },
         {
           label: 'Garden Leisure Luxury Spas',
           sub: 'Premium hydrotherapy jets, ergonomic seating & LED lighting',
-          url: 'https://poolandspaworld.net/swimming-pool-products/spas',
+          url: 'http://poolandspaworld.net/swimming-pool-products/spas',
           icon: 'spa',
           badge: 'Garden Leisure'
         },
         {
           label: 'Sirona Spa Care System',
           sub: 'Specialized gentle spa sanitizers, water clarity & balancing',
-          url: 'https://poolandspaworld.net/sirona',
+          url: 'http://poolandspaworld.net/sirona',
           icon: 'droplet',
           badge: 'Sirona'
         },
         {
           isDivider: true,
-          label: 'Visit Showroom'
+          label: 'Visit Showroom & Socials'
         },
         {
           label: 'Showroom Hours & Directions',
@@ -200,11 +218,19 @@
         },
         {
           label: 'Cricket’s Pool & Spa Facebook Page',
-          sub: 'Connect with Cricket’s Pool and Spa World on Facebook',
+          sub: 'Connect with Cricket’s Pool And Spa World on Facebook',
           url: DIRECT_CONTACT.facebook,
           icon: 'facebook',
           channelClass: 'link--facebook',
-          badge: 'Connect'
+          badge: 'Facebook'
+        },
+        {
+          label: 'Cricket’s Pool & Spa Instagram Profile',
+          sub: '@cricketspoolandspaworld — Showroom hot tubs & hydrotherapy spas',
+          url: DIRECT_CONTACT.instagram,
+          icon: 'instagram',
+          channelClass: 'link--instagram',
+          badge: 'Instagram'
         }
       ],
       defaultCategory: 'Spas & Hot Tubs'
@@ -266,7 +292,7 @@
     return icons[name] || icons.globe;
   }
 
-  // --- Dynamic On-Demand Cell Phone UI Updater ---
+  // --- Dynamic On-Demand Mobile Phone UI Updater ---
   function updateCellShareUI() {
     if (toggleShareCell) {
       toggleShareCell.checked = shareCellPhone;
@@ -274,38 +300,38 @@
 
     if (shareCellPhone) {
       if (cellToggleCard) cellToggleCard.classList.add('is-active');
-      if (cellBadge) cellBadge.textContent = 'Direct Cell Active';
-      if (cellDesc) cellDesc.textContent = `Direct cell ${DIRECT_CONTACT.directCell} is unlocked for vCard download and 1-tap call/text.`;
+      if (cellBadge) cellBadge.textContent = 'Mobile Unlocked';
+      if (cellDesc) cellDesc.textContent = `Direct mobile ${DIRECT_CONTACT.mobilePhone} is unlocked for vCard download and 1-tap call/text.`;
 
       if (quickCall) {
-        quickCall.href = `tel:${DIRECT_CONTACT.directCellRaw}`;
-        quickCall.setAttribute('aria-label', `Call Charley's Cell ${DIRECT_CONTACT.directCell}`);
+        quickCall.href = `tel:${DIRECT_CONTACT.mobilePhoneRaw}`;
+        quickCall.setAttribute('aria-label', `Call Mobile ${DIRECT_CONTACT.mobilePhone}`);
       }
-      if (quickCallLabel) quickCallLabel.textContent = 'Call Cell';
+      if (quickCallLabel) quickCallLabel.textContent = 'Call Mobile';
 
       if (quickText) {
-        quickText.href = `sms:${DIRECT_CONTACT.directCellRaw}?&body=Hi%20Charley,%20connecting%20via%20your%20direct%20contact%20card...`;
-        quickText.setAttribute('aria-label', `Text Charley's Cell ${DIRECT_CONTACT.directCell}`);
+        quickText.href = `sms:${DIRECT_CONTACT.mobilePhoneRaw}?&body=Hi%20Charley,%20connecting%20via%20your%20direct%20contact%20card...`;
+        quickText.setAttribute('aria-label', `Text Mobile ${DIRECT_CONTACT.mobilePhone}`);
       }
-      if (quickTextLabel) quickTextLabel.textContent = 'Text Cell';
+      if (quickTextLabel) quickTextLabel.textContent = 'Text Mobile';
 
-      if (saveVcardLabel) saveVcardLabel.textContent = 'Save Contact + Direct Cell (.vcf)';
+      if (saveVcardLabel) saveVcardLabel.textContent = 'Save Contact + Mobile (.vcf)';
     } else {
       if (cellToggleCard) cellToggleCard.classList.remove('is-active');
-      if (cellBadge) cellBadge.textContent = 'Store Only';
-      if (cellDesc) cellDesc.textContent = `Direct mobile hidden. Only store/office phone ${DIRECT_CONTACT.storePhone} is shared.`;
+      if (cellBadge) cellBadge.textContent = 'Work Phone Only';
+      if (cellDesc) cellDesc.textContent = `Mobile hidden (selectable to only share with certain contacts). Company textable line ${DIRECT_CONTACT.workPhone} is active.`;
 
       if (quickCall) {
-        quickCall.href = `tel:${DIRECT_CONTACT.storePhoneRaw}`;
-        quickCall.setAttribute('aria-label', `Call Store ${DIRECT_CONTACT.storePhone}`);
+        quickCall.href = `tel:${DIRECT_CONTACT.workPhoneRaw}`;
+        quickCall.setAttribute('aria-label', `Call Work ${DIRECT_CONTACT.workPhone}`);
       }
-      if (quickCallLabel) quickCallLabel.textContent = 'Call Store';
+      if (quickCallLabel) quickCallLabel.textContent = 'Call Work';
 
       if (quickText) {
-        quickText.href = `sms:${DIRECT_CONTACT.storePhoneRaw}?&body=Hi%20Charley,%20I%20saw%20your%20contact%20card%20from%20Cricket's%20Pool%20and%20wanted%20to%20ask%20about...`;
-        quickText.setAttribute('aria-label', 'Text Inquiries');
+        quickText.href = `sms:${DIRECT_CONTACT.workPhoneRaw}?&body=Hi%20Charley,%20I%20saw%20your%20contact%20card%20from%20Cricket's%20Pool%20and%20wanted%20to%20ask%20about...`;
+        quickText.setAttribute('aria-label', 'Text Work Line');
       }
-      if (quickTextLabel) quickTextLabel.textContent = 'Text';
+      if (quickTextLabel) quickTextLabel.textContent = 'Text Work';
 
       if (saveVcardLabel) saveVcardLabel.textContent = 'Save Contact (.vcf)';
     }
@@ -320,9 +346,9 @@
       shareCellPhone = e.target.checked;
       updateCellShareUI();
       if (shareCellPhone) {
-        showToast(`Direct cell ${DIRECT_CONTACT.directCell} unlocked for this contact!`);
+        showToast(`Direct mobile ${DIRECT_CONTACT.mobilePhone} unlocked for this contact!`);
       } else {
-        showToast('Cell hidden — sharing store phone only');
+        showToast('Mobile hidden — sharing work phone only');
       }
     });
   }
@@ -437,25 +463,27 @@
     ];
 
     if (shareCellPhone) {
-      lines.push(`TEL;TYPE=CELL,VOICE,PREF:${DIRECT_CONTACT.directCellRaw}`);
-      lines.push(`TEL;TYPE=WORK,VOICE:${DIRECT_CONTACT.storePhoneRaw}`);
+      lines.push(`TEL;TYPE=CELL,VOICE,PREF:${DIRECT_CONTACT.mobilePhoneRaw}`);
+      lines.push(`TEL;TYPE=WORK,VOICE,MSG:${DIRECT_CONTACT.workPhoneRaw}`);
     } else {
-      lines.push(`TEL;TYPE=WORK,VOICE,PREF:${DIRECT_CONTACT.storePhoneRaw}`);
+      lines.push(`TEL;TYPE=WORK,VOICE,MSG,PREF:${DIRECT_CONTACT.workPhoneRaw}`);
     }
 
     lines.push(`EMAIL;TYPE=WORK,INTERNET,PREF:${DIRECT_CONTACT.email}`);
     lines.push(`URL;TYPE=WORK:${DIRECT_CONTACT.website}`);
     lines.push('ADR;TYPE=WORK:;;1100 Rue du Belier;Lafayette;LA;70506;USA');
+    lines.push(`X-SOCIALPROFILE;type=facebook:${DIRECT_CONTACT.facebook}`);
+    lines.push(`X-SOCIALPROFILE;type=instagram:${DIRECT_CONTACT.instagram}`);
 
     const phoneNote = shareCellPhone
-      ? `Direct Cell: ${DIRECT_CONTACT.directCell}. Store Phone: ${DIRECT_CONTACT.storePhone}.`
-      : `Store Phone: ${DIRECT_CONTACT.storePhone}.`;
+      ? `Mobile Phone: ${DIRECT_CONTACT.mobilePhone} (Direct). Work Phone: ${DIRECT_CONTACT.workPhone} (Company textable line).`
+      : `Work Phone: ${DIRECT_CONTACT.workPhone} (Company textable line).`;
 
-    lines.push(`NOTE:Charley Braun — Swimming Pool Department Manager at Cricket's Pool and Spa World, Inc. (The Backyard Place). Free computerized water analysis, Maytronics Dolphin robotic pool cleaners, Hayward, Pentair, Jandy, Polaris warranty center, chemicals, and hot tubs. ${phoneNote} Address: 1100 Rue du Belier, Lafayette, LA 70506.${eventNote}`);
+    lines.push(`NOTE:Charley Braun — Swimming Pool Department Manager at ${DIRECT_CONTACT.company} (The Backyard Place). ${phoneNote} Free computerized water analysis, Maytronics Dolphin robotic pool cleaners, warranty center, chemicals, and hot tubs. Website: ${DIRECT_CONTACT.website}. Address: ${DIRECT_CONTACT.address}.${eventNote}`);
 
     const cats = shareCellPhone
-      ? 'CATEGORIES:Swimming Pools,Pool Supplies,Water Testing,VIP Contact,Hot Tubs,Cricket\'s Pool and Spa World'
-      : 'CATEGORIES:Swimming Pools,Pool Supplies,Water Testing,Equipment,Hot Tubs,Cricket\'s Pool and Spa World';
+      ? 'CATEGORIES:Swimming Pools,Pool Supplies,Water Testing,VIP Contact,Hot Tubs,Cricket\'s Pool And Spa World'
+      : 'CATEGORIES:Swimming Pools,Pool Supplies,Water Testing,Equipment,Hot Tubs,Cricket\'s Pool And Spa World';
     lines.push(cats);
     lines.push('REV:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z');
     lines.push('END:VCARD');
@@ -478,9 +506,9 @@
     URL.revokeObjectURL(url);
 
     if (shareCellPhone) {
-      showToast('Contact (.vcf) with Direct Cell downloaded!');
+      showToast('Contact (.vcf) with Direct Mobile downloaded!');
     } else {
-      showToast('Store Contact (.vcf) downloaded — tap to save!');
+      showToast('Work Contact (.vcf) downloaded — tap to save!');
     }
   }
 
@@ -495,17 +523,19 @@
     const cardTitle = CARDS[currentCardId] ? CARDS[currentCardId].title : DIRECT_CONTACT.title;
 
     const cellRow = shareCellPhone
-      ? `<li>${iconSvg('phone')} <span><strong>Direct Cell:</strong> ${DIRECT_CONTACT.directCell} <em style="color:var(--accent-cyan-hover); font-style:normal; font-weight:700;">(Included on demand)</em></span></li>`
-      : `<li>${iconSvg('phone')} <span style="opacity:0.65;"><strong>Direct Cell:</strong> <em>Hidden (Toggled off by default)</em></span></li>`;
+      ? `<li>${iconSvg('phone')} <span><strong>Mobile Phone:</strong> ${DIRECT_CONTACT.mobilePhone} <em style="color:var(--accent-cyan-hover); font-style:normal; font-weight:700;">(Selectable share active)</em></span></li>`
+      : `<li>${iconSvg('phone')} <span style="opacity:0.65;"><strong>Mobile Phone:</strong> <em>Hidden (selectable to only share with certain contacts)</em></span></li>`;
 
     vcfFieldsList.innerHTML = `
       <li>${iconSvg('star')} <span><strong>Full Name:</strong> ${DIRECT_CONTACT.name}</span></li>
-      <li>${iconSvg('globe')} <span><strong>Company:</strong> ${DIRECT_CONTACT.company}</span></li>
+      <li>${iconSvg('globe')} <span><strong>Business Name:</strong> ${DIRECT_CONTACT.company}</span></li>
       <li>${iconSvg('shield')} <span><strong>Title:</strong> ${cardTitle}</span></li>
+      <li>${iconSvg('phone')} <span><strong>Work Phone:</strong> ${DIRECT_CONTACT.workPhone} (Company textable line)</span></li>
       ${cellRow}
-      <li>${iconSvg('phone')} <span><strong>Store Phone:</strong> ${DIRECT_CONTACT.storePhone} (Office / Store)</span></li>
       <li>${iconSvg('mail')} <span><strong>Email:</strong> ${DIRECT_CONTACT.email}</span></li>
-      <li>${iconSvg('globe')} <span><strong>Website:</strong> poolandspaworld.net</span></li>
+      <li>${iconSvg('globe')} <span><strong>Website:</strong> <a href="${DIRECT_CONTACT.website}" target="_blank" rel="noopener">${DIRECT_CONTACT.website}</a></span></li>
+      <li>${iconSvg('facebook')} <span><strong>Facebook Page:</strong> <a href="${DIRECT_CONTACT.facebook}" target="_blank" rel="noopener">Cricket's Pool and Spa World</a></span></li>
+      <li>${iconSvg('instagram')} <span><strong>Instagram Profile:</strong> <a href="${DIRECT_CONTACT.instagram}" target="_blank" rel="noopener">@cricketspoolandspaworld</a></span></li>
       <li>${iconSvg('pin')} <span><strong>Address:</strong> ${DIRECT_CONTACT.address}</span></li>
     `;
   }
@@ -784,14 +814,14 @@
     });
   }
 
-  // Copy link (reflects on-demand cell phone query parameter)
+  // Copy link (reflects on-demand mobile phone query parameter)
   if (btnCopyLink) {
     btnCopyLink.addEventListener('click', async () => {
       const url = getShareUrl();
       try {
         await navigator.clipboard.writeText(url);
         if (shareCellPhone) {
-          showToast('VIP link with direct cell copied!');
+          showToast('VIP link with direct mobile copied!');
         } else {
           showToast('Public store link copied!');
         }
@@ -806,13 +836,13 @@
     btnNativeShare.addEventListener('click', async () => {
       const url = getShareUrl();
       const text = shareCellPhone
-        ? "Contact card for Charley Braun (Direct Cell & Store), Swimming Pool Department Manager at Cricket's Pool and Spa World."
-        : "Contact card for Charley Braun, Swimming Pool Department Manager at Cricket's Pool and Spa World.";
+        ? "Contact card for Charley Braun (Direct Mobile & Work), Swimming Pool Department Manager at Cricket's Pool And Spa World, Inc."
+        : "Contact card for Charley Braun, Swimming Pool Department Manager at Cricket's Pool And Spa World, Inc.";
 
       if (navigator.share) {
         try {
           await navigator.share({
-            title: "Charley Braun | Cricket's Pool and Spa World",
+            title: "Charley Braun | Cricket's Pool And Spa World, Inc.",
             text: text,
             url: url
           });
@@ -845,7 +875,7 @@
 
     const qrUrlText = document.getElementById('qr-url-text');
     if (qrUrlText) {
-      qrUrlText.textContent = shareCellPhone ? "Cricket's Pool • Direct Cell Included" : "Cricket's Pool and Spa World (Store Only)";
+      qrUrlText.textContent = shareCellPhone ? "Cricket's Pool • Direct Mobile Included" : "Cricket's Pool And Spa World, Inc. (Work Phone Only)";
     }
   }
 
