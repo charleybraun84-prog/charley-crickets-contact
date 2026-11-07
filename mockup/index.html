@@ -78,11 +78,29 @@
       </div>
     </header>
 
+    <!-- On-Demand Direct Cell Sharing Toggle (Default: OFF) -->
+    <div class="cell-toggle-card" id="cell-toggle-card">
+      <div class="cell-toggle-main">
+        <div class="cell-toggle-info">
+          <div class="cell-toggle-title">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Direct Cell Phone</span>
+            <span class="cell-toggle-badge" id="cell-badge">Store Only</span>
+          </div>
+          <p class="cell-toggle-sub" id="cell-desc">Share direct mobile with selected VIPs/contacts on demand.</p>
+        </div>
+        <label class="switch switch--cell" title="Toggle sharing direct cell phone">
+          <input type="checkbox" id="toggle-share-cell">
+          <span class="switch__slider" aria-hidden="true"></span>
+        </label>
+      </div>
+    </div>
+
     <!-- PRIMARY ACTION: Save Contact directly to Phone Contacts (.vcf) -->
     <div class="save-contact-hero">
       <button type="button" class="btn btn-primary btn-save-hero" id="btn-save-vcard-top">
         <svg class="icon" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-        <span>Save Contact (.vcf)</span>
+        <span id="save-vcard-label">Save Contact (.vcf)</span>
       </button>
       <button type="button" class="vcf-preview-trigger" id="btn-open-vcf-info">
         <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
@@ -94,11 +112,11 @@
     <section class="quick" aria-label="Direct contact channels">
       <a href="tel:+13379847626" id="quick-call" class="quick__btn" aria-label="Call Store">
         <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span>Call Store</span>
+        <span id="quick-call-label">Call Store</span>
       </a>
       <a href="sms:+13379847626?&body=Hi%20Charley,%20I%20saw%20your%20contact%20card%20from%20Cricket's%20Pool%20and%20wanted%20to%20ask%20about..." id="quick-text" class="quick__btn" aria-label="Text Inquiries">
         <svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <span>Text</span>
+        <span id="quick-text-label">Text</span>
       </a>
       <a href="mailto:charley@poolandspaworld.net?subject=Pool%20Inquiry%20via%20Cricket's%20Contact%20Card" id="quick-email" class="quick__btn" aria-label="Email Charley">
         <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>

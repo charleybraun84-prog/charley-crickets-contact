@@ -8,8 +8,10 @@
   'use strict';
 
   /* ==========================================================================
-     DIRECT CONTACT DETAILS & SCAFFOLDING
-     👉 Charley: You can easily update your direct cell, work email, and social links here!
+     DIRECT CONTACT DETAILS & CONFIGURATION
+     👉 Cell Phone: (337) 577-9224
+     👉 Store Phone: (337) 984-7626
+     👉 Location: 1100 Rue du Belier, Lafayette, LA 70506
      ========================================================================== */
   const DIRECT_CONTACT = {
     name: 'Charley Braun',
@@ -19,16 +21,29 @@
     companySubtitle: 'The Backyard Place',
     storePhone: '(337) 984-7626',
     storePhoneRaw: '+13379847626',
-    directCell: '(337) 984-7626',        // 👈 Paste your direct cell / mobile here
-    directCellRaw: '+13379847626',       // 👈 Format: +13370000000
-    email: 'charley@poolandspaworld.net', // 👈 Paste your store/work email here
+    directCell: '(337) 577-9224',        // 👈 Charley's direct personal mobile
+    directCellRaw: '+13375779224',       // 👈 Format for tel: and vCard
+    email: 'charley@poolandspaworld.net', // 👈 Work email
     website: 'https://poolandspaworld.net',
     address: '1100 Rue du Belier, Lafayette, LA 70506',
     hours: 'Mon–Fri 8:00 AM – 4:00 PM • Sat–Sun Closed',
     googleReviews: 'https://maps.google.com/?q=Cricket%27s+Pool+and+Spa+World+1100+Rue+du+Belier+Lafayette+LA',
-    facebook: 'https://www.facebook.com/', // 👈 Paste store Facebook page URL here
-    instagram: 'https://www.instagram.com/' // 👈 Paste Instagram profile URL here
+    facebook: 'https://www.facebook.com/', // 👈 Store Facebook page URL
+    instagram: 'https://www.instagram.com/' // 👈 Store Instagram profile URL
   };
+
+  // State: Direct Cell Phone Sharing (Defaults to FALSE for privacy)
+  let shareCellPhone = false;
+
+  // Check URL parameters: e.g. ?cell=1, ?vip=1, ?direct=1 or #cell
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('cell') === '1' || urlParams.get('vip') === '1' || urlParams.get('direct') === '1' || window.location.hash === '#cell') {
+      shareCellPhone = true;
+    }
+  } catch (e) {
+    console.warn('URL param parse error:', e);
+  }
 
   // --- Two Category Profiles: Swimming Pools vs Spas & Hot Tubs ---
   const CARDS = {
@@ -217,6 +232,18 @@
   const exchangeTagNote = document.getElementById('exchange-tag-note');
   const tagNoteText = document.getElementById('tag-note-text');
   const vcfRawPreview = document.getElementById('vcf-raw-preview');
+  const vcfFieldsList = document.getElementById('vcf-fields-list');
+
+  // Cell toggle DOM elements
+  const toggleShareCell = document.getElementById('toggle-share-cell');
+  const cellToggleCard = document.getElementById('cell-toggle-card');
+  const cellBadge = document.getElementById('cell-badge');
+  const cellDesc = document.getElementById('cell-desc');
+  const quickCall = document.getElementById('quick-call');
+  const quickCallLabel = document.getElementById('quick-call-label');
+  const quickText = document.getElementById('quick-text');
+  const quickTextLabel = document.getElementById('quick-text-label');
+  const saveVcardLabel = document.getElementById('save-vcard-label');
 
   // SVG icon library
   function iconSvg(name) {
@@ -231,11 +258,73 @@
       sun: '<svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
       pin: '<svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
       phone: '<svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+      mail: '<svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>',
       facebook: '<svg class="icon" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>',
       instagram: '<svg class="icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>',
       arrow: '<svg class="icon link__arrow" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>'
     };
     return icons[name] || icons.globe;
+  }
+
+  // --- Dynamic On-Demand Cell Phone UI Updater ---
+  function updateCellShareUI() {
+    if (toggleShareCell) {
+      toggleShareCell.checked = shareCellPhone;
+    }
+
+    if (shareCellPhone) {
+      if (cellToggleCard) cellToggleCard.classList.add('is-active');
+      if (cellBadge) cellBadge.textContent = 'Direct Cell Active';
+      if (cellDesc) cellDesc.textContent = `Direct cell ${DIRECT_CONTACT.directCell} is unlocked for vCard download and 1-tap call/text.`;
+
+      if (quickCall) {
+        quickCall.href = `tel:${DIRECT_CONTACT.directCellRaw}`;
+        quickCall.setAttribute('aria-label', `Call Charley's Cell ${DIRECT_CONTACT.directCell}`);
+      }
+      if (quickCallLabel) quickCallLabel.textContent = 'Call Cell';
+
+      if (quickText) {
+        quickText.href = `sms:${DIRECT_CONTACT.directCellRaw}?&body=Hi%20Charley,%20connecting%20via%20your%20direct%20contact%20card...`;
+        quickText.setAttribute('aria-label', `Text Charley's Cell ${DIRECT_CONTACT.directCell}`);
+      }
+      if (quickTextLabel) quickTextLabel.textContent = 'Text Cell';
+
+      if (saveVcardLabel) saveVcardLabel.textContent = 'Save Contact + Direct Cell (.vcf)';
+    } else {
+      if (cellToggleCard) cellToggleCard.classList.remove('is-active');
+      if (cellBadge) cellBadge.textContent = 'Store Only';
+      if (cellDesc) cellDesc.textContent = `Direct mobile hidden. Only store/office phone ${DIRECT_CONTACT.storePhone} is shared.`;
+
+      if (quickCall) {
+        quickCall.href = `tel:${DIRECT_CONTACT.storePhoneRaw}`;
+        quickCall.setAttribute('aria-label', `Call Store ${DIRECT_CONTACT.storePhone}`);
+      }
+      if (quickCallLabel) quickCallLabel.textContent = 'Call Store';
+
+      if (quickText) {
+        quickText.href = `sms:${DIRECT_CONTACT.storePhoneRaw}?&body=Hi%20Charley,%20I%20saw%20your%20contact%20card%20from%20Cricket's%20Pool%20and%20wanted%20to%20ask%20about...`;
+        quickText.setAttribute('aria-label', 'Text Inquiries');
+      }
+      if (quickTextLabel) quickTextLabel.textContent = 'Text';
+
+      if (saveVcardLabel) saveVcardLabel.textContent = 'Save Contact (.vcf)';
+    }
+
+    renderVcfFieldsList();
+    updateVcfPreviewText();
+    renderQrCode();
+  }
+
+  if (toggleShareCell) {
+    toggleShareCell.addEventListener('change', (e) => {
+      shareCellPhone = e.target.checked;
+      updateCellShareUI();
+      if (shareCellPhone) {
+        showToast(`Direct cell ${DIRECT_CONTACT.directCell} unlocked for this contact!`);
+      } else {
+        showToast('Cell hidden — sharing store phone only');
+      }
+    });
   }
 
   // --- Render Profile Card ---
@@ -298,8 +387,8 @@
       }).join('');
     }
 
-    // Update vCard raw preview
-    updateVcfPreviewText();
+    // Update UI elements based on state
+    updateCellShareUI();
   }
 
   // --- Category Switcher Tabs ---
@@ -338,22 +427,40 @@
     const card = CARDS[currentCardId];
     const eventNote = isEventMode ? ` Met at: ${activeEventName}.` : '';
 
-    return [
+    const lines = [
       'BEGIN:VCARD',
       'VERSION:3.0',
       'N:Braun;Charley;;;',
       `FN:${DIRECT_CONTACT.name}`,
       `ORG:${DIRECT_CONTACT.company}`,
-      `TITLE:${card.title}`,
-      `TEL;TYPE=WORK,VOICE,PREF:${DIRECT_CONTACT.storePhoneRaw}`,
-      `EMAIL;TYPE=WORK,INTERNET,PREF:${DIRECT_CONTACT.email}`,
-      `URL;TYPE=WORK:${DIRECT_CONTACT.website}`,
-      'ADR;TYPE=WORK:;;1100 Rue du Belier;Lafayette;LA;70506;USA',
-      `NOTE:Charley Braun — Swimming Pool Department Manager at Cricket's Pool and Spa World, Inc. (The Backyard Place). Free computerized water analysis, Maytronics Dolphin robotic pool cleaners, Hayward, Pentair, Jandy, Polaris warranty center, chemicals, and hot tubs. Store Phone: ${DIRECT_CONTACT.storePhone}. Address: 1100 Rue du Belier, Lafayette, LA 70506.${eventNote}`,
-      'CATEGORIES:Swimming Pools,Pool Supplies,Water Testing,Equipment,Hot Tubs,Cricket\'s Pool and Spa World',
-      'REV:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
-      'END:VCARD'
-    ].join('\r\n');
+      `TITLE:${card.title}`
+    ];
+
+    if (shareCellPhone) {
+      lines.push(`TEL;TYPE=CELL,VOICE,PREF:${DIRECT_CONTACT.directCellRaw}`);
+      lines.push(`TEL;TYPE=WORK,VOICE:${DIRECT_CONTACT.storePhoneRaw}`);
+    } else {
+      lines.push(`TEL;TYPE=WORK,VOICE,PREF:${DIRECT_CONTACT.storePhoneRaw}`);
+    }
+
+    lines.push(`EMAIL;TYPE=WORK,INTERNET,PREF:${DIRECT_CONTACT.email}`);
+    lines.push(`URL;TYPE=WORK:${DIRECT_CONTACT.website}`);
+    lines.push('ADR;TYPE=WORK:;;1100 Rue du Belier;Lafayette;LA;70506;USA');
+
+    const phoneNote = shareCellPhone
+      ? `Direct Cell: ${DIRECT_CONTACT.directCell}. Store Phone: ${DIRECT_CONTACT.storePhone}.`
+      : `Store Phone: ${DIRECT_CONTACT.storePhone}.`;
+
+    lines.push(`NOTE:Charley Braun — Swimming Pool Department Manager at Cricket's Pool and Spa World, Inc. (The Backyard Place). Free computerized water analysis, Maytronics Dolphin robotic pool cleaners, Hayward, Pentair, Jandy, Polaris warranty center, chemicals, and hot tubs. ${phoneNote} Address: 1100 Rue du Belier, Lafayette, LA 70506.${eventNote}`);
+
+    const cats = shareCellPhone
+      ? 'CATEGORIES:Swimming Pools,Pool Supplies,Water Testing,VIP Contact,Hot Tubs,Cricket\'s Pool and Spa World'
+      : 'CATEGORIES:Swimming Pools,Pool Supplies,Water Testing,Equipment,Hot Tubs,Cricket\'s Pool and Spa World';
+    lines.push(cats);
+    lines.push('REV:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z');
+    lines.push('END:VCARD');
+
+    return lines.join('\r\n');
   }
 
   function generateVCard() {
@@ -363,19 +470,44 @@
 
     const a = document.createElement('a');
     a.href = url;
-    a.download = `Charley_Braun_Crickets_Pool.vcf`;
+    const suffix = shareCellPhone ? 'VIP_Direct' : 'Store';
+    a.download = `Charley_Braun_Crickets_Pool_${suffix}.vcf`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
-    showToast('Contact (.vcf) downloaded — tap to save to phone!');
+    if (shareCellPhone) {
+      showToast('Contact (.vcf) with Direct Cell downloaded!');
+    } else {
+      showToast('Store Contact (.vcf) downloaded — tap to save!');
+    }
   }
 
   function updateVcfPreviewText() {
     if (vcfRawPreview) {
       vcfRawPreview.textContent = buildVCardText();
     }
+  }
+
+  function renderVcfFieldsList() {
+    if (!vcfFieldsList) return;
+    const cardTitle = CARDS[currentCardId] ? CARDS[currentCardId].title : DIRECT_CONTACT.title;
+
+    const cellRow = shareCellPhone
+      ? `<li>${iconSvg('phone')} <span><strong>Direct Cell:</strong> ${DIRECT_CONTACT.directCell} <em style="color:var(--accent-cyan-hover); font-style:normal; font-weight:700;">(Included on demand)</em></span></li>`
+      : `<li>${iconSvg('phone')} <span style="opacity:0.65;"><strong>Direct Cell:</strong> <em>Hidden (Toggled off by default)</em></span></li>`;
+
+    vcfFieldsList.innerHTML = `
+      <li>${iconSvg('star')} <span><strong>Full Name:</strong> ${DIRECT_CONTACT.name}</span></li>
+      <li>${iconSvg('globe')} <span><strong>Company:</strong> ${DIRECT_CONTACT.company}</span></li>
+      <li>${iconSvg('shield')} <span><strong>Title:</strong> ${cardTitle}</span></li>
+      ${cellRow}
+      <li>${iconSvg('phone')} <span><strong>Store Phone:</strong> ${DIRECT_CONTACT.storePhone} (Office / Store)</span></li>
+      <li>${iconSvg('mail')} <span><strong>Email:</strong> ${DIRECT_CONTACT.email}</span></li>
+      <li>${iconSvg('globe')} <span><strong>Website:</strong> poolandspaworld.net</span></li>
+      <li>${iconSvg('pin')} <span><strong>Address:</strong> ${DIRECT_CONTACT.address}</span></li>
+    `;
   }
 
   const btnSaveTop = document.getElementById('btn-save-vcard-top');
@@ -421,7 +553,7 @@
   const btnOpenVcfInfo = document.getElementById('btn-open-vcf-info');
   if (btnOpenVcfInfo) {
     btnOpenVcfInfo.addEventListener('click', () => {
-      updateVcfPreviewText();
+      updateCellShareUI();
       openSheet('sheet-vcf-info');
     });
   }
@@ -625,6 +757,11 @@
   const btnNativeShare = document.getElementById('btn-native-share');
   const btnDownloadQr = document.getElementById('btn-download-qr');
 
+  function getShareUrl() {
+    const base = window.location.origin + window.location.pathname;
+    return shareCellPhone ? `${base}?cell=1` : base;
+  }
+
   function openShareMode() {
     if (shareMode) {
       shareMode.classList.add('is-open');
@@ -647,13 +784,17 @@
     });
   }
 
-  // Copy link
+  // Copy link (reflects on-demand cell phone query parameter)
   if (btnCopyLink) {
     btnCopyLink.addEventListener('click', async () => {
-      const url = window.location.href;
+      const url = getShareUrl();
       try {
         await navigator.clipboard.writeText(url);
-        showToast('Card link copied to clipboard!');
+        if (shareCellPhone) {
+          showToast('VIP link with direct cell copied!');
+        } else {
+          showToast('Public store link copied!');
+        }
       } catch (err) {
         showToast('Link: ' + url);
       }
@@ -663,12 +804,17 @@
   // Native Web Share API
   if (btnNativeShare) {
     btnNativeShare.addEventListener('click', async () => {
+      const url = getShareUrl();
+      const text = shareCellPhone
+        ? "Contact card for Charley Braun (Direct Cell & Store), Swimming Pool Department Manager at Cricket's Pool and Spa World."
+        : "Contact card for Charley Braun, Swimming Pool Department Manager at Cricket's Pool and Spa World.";
+
       if (navigator.share) {
         try {
           await navigator.share({
             title: "Charley Braun | Cricket's Pool and Spa World",
-            text: "Contact card for Charley Braun, Swimming Pool Department Manager at Cricket's Pool and Spa World in Lafayette, LA.",
-            url: window.location.href
+            text: text,
+            url: url
           });
         } catch (e) {
           console.warn('Share dismissed');
@@ -687,7 +833,7 @@
     const target = document.getElementById('qr-target');
     if (!target || typeof QRCode === 'undefined') return;
     target.innerHTML = '';
-    const shareUrl = window.location.href;
+    const shareUrl = getShareUrl();
     qrCodeInstance = new QRCode(target, {
       text: shareUrl,
       width: 220,
@@ -696,13 +842,18 @@
       colorLight: '#f0fdfa',
       correctLevel: QRCode.CorrectLevel.M
     });
+
+    const qrUrlText = document.getElementById('qr-url-text');
+    if (qrUrlText) {
+      qrUrlText.textContent = shareCellPhone ? "Cricket's Pool • Direct Cell Included" : "Cricket's Pool and Spa World (Store Only)";
+    }
   }
 
   function renderFullscreenQr() {
     const target = document.getElementById('fullscreen-qr-target');
     if (!target || typeof QRCode === 'undefined') return;
     target.innerHTML = '';
-    const shareUrl = window.location.href;
+    const shareUrl = getShareUrl();
     fullscreenQrInstance = new QRCode(target, {
       text: shareUrl,
       width: 280,
@@ -722,7 +873,8 @@
       if (!src) return;
       const a = document.createElement('a');
       a.href = src;
-      a.download = 'Charley_Braun_Crickets_Pool_QR.png';
+      const suffix = shareCellPhone ? 'VIP_Direct' : 'Store';
+      a.download = `Charley_Braun_Crickets_Pool_${suffix}_QR.png`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -747,7 +899,7 @@
   function init() {
     renderCard('pools');
     buildCalendarDays();
-    renderQrCode();
+    updateCellShareUI();
   }
 
   if (document.readyState === 'loading') {
