@@ -1,7 +1,7 @@
 /* ==========================================================================
    Cricket's Pool and Spa World — Contact Share Card Application Logic
    Hosted at: poolandspaworld.net (or custom domain)
-   Role: Charley Braun — Service Department Manager
+   Profile: Cricket's Pool And Spa World, Inc. — Service Department
    ========================================================================== */
 
 (function () {
@@ -10,29 +10,26 @@
   /* ==========================================================================
      DIRECT CONTACT DETAILS & CONFIGURATION
      👉 Business Name: Cricket's Pool And Spa World, Inc.
-     👉 Title: Service Department Manager
+     👉 Department: Service Department — Authorized Warranty Center
      👉 Address: 1100 Rue du Belier, Lafayette, LA 70506
-     👉 Work Phone: (337) 984-7626 (Company textable line)
-     👉 Mobile Phone: (337) 577-9224 (Selectable to only share with certain contacts)
+     👉 Work Phone: (337) 984-7626 (Unified Voice & Text Line)
      👉 Website: http://poolandspaworld.net/
      👉 Facebook: https://www.facebook.com/profile.php?id=100039496489824
      👉 Instagram: https://www.instagram.com/cricketspoolandspaworld/
      ========================================================================== */
   const DIRECT_CONTACT = {
-    name: 'Charley Braun',
-    avatarInitial: 'CB',
-    title: 'Service Department Manager',
+    name: "Cricket's Pool And Spa World, Inc.",
+    displayName: "Cricket's Pool And Spa World",
+    department: 'Service Department',
+    avatarInitial: 'CP',
+    title: 'Service Department — Authorized Warranty Center',
     company: "Cricket's Pool And Spa World, Inc.",
     companySubtitle: 'The Backyard Place',
-    workPhone: '(337) 984-7626',          // Work Phone (Company textable line)
+    workPhone: '(337) 984-7626',          // Unified Voice & Text line
     workPhoneRaw: '+13379847626',
-    storePhone: '(337) 984-7626',         // Alias for store/office line
+    storePhone: '(337) 984-7626',         // Office line
     storePhoneRaw: '+13379847626',
-    mobilePhone: '(337) 577-9224',        // Mobile Phone (selectable to only share with certain contacts)
-    mobilePhoneRaw: '+13375779224',
-    directCell: '(337) 577-9224',         // Alias
-    directCellRaw: '+13375779224',
-    email: 'charley@poolandspaworld.net', // Work email
+    email: 'charley@poolandspaworld.net', // Service inbox
     website: 'http://poolandspaworld.net/',
     address: '1100 Rue du Belier, Lafayette, LA 70506',
     hours: 'Mon–Fri 8:00 AM – 4:00 PM • Sat–Sun Closed',
@@ -40,19 +37,6 @@
     facebook: 'https://www.facebook.com/profile.php?id=100039496489824',
     instagram: 'https://www.instagram.com/cricketspoolandspaworld/'
   };
-
-  // State: Direct Mobile Phone Sharing (Defaults to FALSE for privacy / selectable sharing)
-  let shareCellPhone = false;
-
-  // Check URL parameters: e.g. ?cell=1, ?vip=1, ?direct=1 or #cell
-  try {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('cell') === '1' || urlParams.get('vip') === '1' || urlParams.get('direct') === '1' || window.location.hash === '#cell') {
-      shareCellPhone = true;
-    }
-  } catch (e) {
-    console.warn('URL param parse error:', e);
-  }
 
   // --- Two Service Profiles: Warranty & Equipment vs Water Care & Diagnostics ---
   const CARDS = {
@@ -62,7 +46,7 @@
       name: DIRECT_CONTACT.name,
       avatarInitial: DIRECT_CONTACT.avatarInitial,
       company: DIRECT_CONTACT.company,
-      title: 'Service Department Manager',
+      title: 'Service Department — Authorized Warranty Center',
       tagline: 'Authorized warranty service dealer for Hayward, Pentair, and Fluidra (Jandy, Polaris, Zodiac). Expert pool equipment diagnostics, warranty repairs & maintenance in Lafayette, LA.',
       location: DIRECT_CONTACT.address,
       chips: [
@@ -71,7 +55,7 @@
         { icon: 'droplet', text: 'Diagnostics & Repair' }
       ],
       socials: [
-        { label: 'Work Phone', sub: DIRECT_CONTACT.workPhone, url: `tel:${DIRECT_CONTACT.workPhoneRaw}`, icon: 'phone' },
+        { label: 'Voice & Text', sub: DIRECT_CONTACT.workPhone, url: `tel:${DIRECT_CONTACT.workPhoneRaw}`, icon: 'phone' },
         { label: 'Store Website', sub: 'poolandspaworld.net', url: DIRECT_CONTACT.website, icon: 'globe' },
         { label: 'Facebook', sub: "Cricket's Pool & Spa", url: DIRECT_CONTACT.facebook, icon: 'facebook' },
         { label: 'Instagram', sub: "@cricketspoolandspaworld", url: DIRECT_CONTACT.instagram, icon: 'instagram' },
@@ -174,7 +158,7 @@
       name: DIRECT_CONTACT.name,
       avatarInitial: DIRECT_CONTACT.avatarInitial,
       company: DIRECT_CONTACT.company,
-      title: 'Service Department Manager',
+      title: 'Water Care Diagnostics & Chemical Center',
       tagline: 'Free computerized pool water testing, Poolife chemical care, salt cell balancing & water clarity troubleshooting in Lafayette, LA.',
       location: DIRECT_CONTACT.address,
       chips: [
@@ -183,7 +167,7 @@
         { icon: 'tool', text: 'Salt System Diagnostics' }
       ],
       socials: [
-        { label: 'Work Phone', sub: DIRECT_CONTACT.workPhone, url: `tel:${DIRECT_CONTACT.workPhoneRaw}`, icon: 'phone' },
+        { label: 'Voice & Text', sub: DIRECT_CONTACT.workPhone, url: `tel:${DIRECT_CONTACT.workPhoneRaw}`, icon: 'phone' },
         { label: 'Store Website', sub: 'poolandspaworld.net', url: DIRECT_CONTACT.website, icon: 'globe' },
         { label: 'Facebook', sub: "Cricket's Pool & Spa", url: DIRECT_CONTACT.facebook, icon: 'facebook' },
         { label: 'Instagram', sub: "@cricketspoolandspaworld", url: DIRECT_CONTACT.instagram, icon: 'instagram' },
@@ -293,11 +277,7 @@
   const vcfRawPreview = document.getElementById('vcf-raw-preview');
   const vcfFieldsList = document.getElementById('vcf-fields-list');
 
-  // Cell toggle DOM elements
-  const toggleShareCell = document.getElementById('toggle-share-cell');
-  const cellToggleCard = document.getElementById('cell-toggle-card');
-  const cellBadge = document.getElementById('cell-badge');
-  const cellDesc = document.getElementById('cell-desc');
+  // Contact action DOM elements
   const quickCall = document.getElementById('quick-call');
   const quickCallLabel = document.getElementById('quick-call-label');
   const quickText = document.getElementById('quick-text');
@@ -325,65 +305,25 @@
     return icons[name] || icons.globe;
   }
 
-  // --- Dynamic On-Demand Mobile Phone UI Updater ---
-  function updateCellShareUI() {
-    if (toggleShareCell) {
-      toggleShareCell.checked = shareCellPhone;
+  // --- Unified Company Contact UI Setup ---
+  function setupCompanyContactUI() {
+    if (quickCall) {
+      quickCall.href = `tel:${DIRECT_CONTACT.workPhoneRaw}`;
+      quickCall.setAttribute('aria-label', `Call Office ${DIRECT_CONTACT.workPhone}`);
     }
+    if (quickCallLabel) quickCallLabel.textContent = 'Call Office';
 
-    if (shareCellPhone) {
-      if (cellToggleCard) cellToggleCard.classList.add('is-active');
-      if (cellBadge) cellBadge.textContent = 'Mobile Unlocked';
-      if (cellDesc) cellDesc.textContent = `Direct mobile ${DIRECT_CONTACT.mobilePhone} is unlocked for vCard download and 1-tap call/text.`;
-
-      if (quickCall) {
-        quickCall.href = `tel:${DIRECT_CONTACT.mobilePhoneRaw}`;
-        quickCall.setAttribute('aria-label', `Call Mobile ${DIRECT_CONTACT.mobilePhone}`);
-      }
-      if (quickCallLabel) quickCallLabel.textContent = 'Call Mobile';
-
-      if (quickText) {
-        quickText.href = `sms:${DIRECT_CONTACT.mobilePhoneRaw}?&body=Hi%20Charley,%20connecting%20via%20your%20direct%20contact%20card...`;
-        quickText.setAttribute('aria-label', `Text Mobile ${DIRECT_CONTACT.mobilePhone}`);
-      }
-      if (quickTextLabel) quickTextLabel.textContent = 'Text Mobile';
-
-      if (saveVcardLabel) saveVcardLabel.textContent = 'Save Contact + Mobile (.vcf)';
-    } else {
-      if (cellToggleCard) cellToggleCard.classList.remove('is-active');
-      if (cellBadge) cellBadge.textContent = 'Work Phone Only';
-      if (cellDesc) cellDesc.textContent = `Mobile hidden (selectable to only share with certain contacts). Company textable line ${DIRECT_CONTACT.workPhone} is active.`;
-
-      if (quickCall) {
-        quickCall.href = `tel:${DIRECT_CONTACT.workPhoneRaw}`;
-        quickCall.setAttribute('aria-label', `Call Work ${DIRECT_CONTACT.workPhone}`);
-      }
-      if (quickCallLabel) quickCallLabel.textContent = 'Call Work';
-
-      if (quickText) {
-        quickText.href = `sms:${DIRECT_CONTACT.workPhoneRaw}?&body=Hi%20Charley,%20I%20saw%20your%20contact%20card%20from%20Cricket's%20Pool%20and%20wanted%20to%20ask%20about...`;
-        quickText.setAttribute('aria-label', 'Text Work Line');
-      }
-      if (quickTextLabel) quickTextLabel.textContent = 'Text Work';
-
-      if (saveVcardLabel) saveVcardLabel.textContent = 'Save Contact (.vcf)';
+    if (quickText) {
+      quickText.href = `sms:${DIRECT_CONTACT.workPhoneRaw}?&body=Hi%20Cricket's%20Service%20Dept,%20I'm%20reaching%20out%20regarding...`;
+      quickText.setAttribute('aria-label', `Text Office Line ${DIRECT_CONTACT.workPhone}`);
     }
+    if (quickTextLabel) quickTextLabel.textContent = 'Text Office';
+
+    if (saveVcardLabel) saveVcardLabel.textContent = 'Save Company Contact (.vcf)';
 
     renderVcfFieldsList();
     updateVcfPreviewText();
     renderQrCode();
-  }
-
-  if (toggleShareCell) {
-    toggleShareCell.addEventListener('change', (e) => {
-      shareCellPhone = e.target.checked;
-      updateCellShareUI();
-      if (shareCellPhone) {
-        showToast(`Direct mobile ${DIRECT_CONTACT.mobilePhone} unlocked for this contact!`);
-      } else {
-        showToast('Mobile hidden — sharing work phone only');
-      }
-    });
   }
 
   // --- Render Profile Card ---
@@ -492,37 +432,21 @@
     const lines = [
       'BEGIN:VCARD',
       'VERSION:3.0',
-      'N:Braun;Charley;;;',
-      `FN:${DIRECT_CONTACT.name}`,
-      `ORG:${DIRECT_CONTACT.company}`,
-      `TITLE:${DIRECT_CONTACT.title}`
+      'N:;Cricket\'s Pool And Spa World, Inc.;;;',
+      'FN:Cricket\'s Pool And Spa World, Inc.',
+      'ORG:Cricket\'s Pool And Spa World, Inc.;Service Department',
+      'TITLE:Service Department — Authorized Warranty Center',
+      `TEL;TYPE=WORK,VOICE,MSG,PREF:${DIRECT_CONTACT.workPhoneRaw}`,
+      `EMAIL;TYPE=WORK,INTERNET,PREF:${DIRECT_CONTACT.email}`,
+      `URL;TYPE=WORK:${DIRECT_CONTACT.website}`,
+      'ADR;TYPE=WORK:;;1100 Rue du Belier;Lafayette;LA;70506;USA',
+      `X-SOCIALPROFILE;type=facebook:${DIRECT_CONTACT.facebook}`,
+      `X-SOCIALPROFILE;type=instagram:${DIRECT_CONTACT.instagram}`,
+      `NOTE:Cricket's Pool And Spa World, Inc. — Service Department (The Backyard Place). Voice & Text line: ${DIRECT_CONTACT.workPhone}. Factory authorized warranty service dealer for Hayward, Pentair, and Fluidra (Jandy, Polaris, Zodiac). Pool equipment diagnostics, warranty repairs, computerized water analysis, and pool chemicals. Website: ${DIRECT_CONTACT.website}. Address: ${DIRECT_CONTACT.address}.${eventNote}`,
+      'CATEGORIES:Pool Service,Warranty Dealer,Hayward,Pentair,Fluidra,Water Testing,Pool Equipment,Cricket\'s Pool And Spa World',
+      'REV:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
+      'END:VCARD'
     ];
-
-    if (shareCellPhone) {
-      lines.push(`TEL;TYPE=CELL,VOICE,PREF:${DIRECT_CONTACT.mobilePhoneRaw}`);
-      lines.push(`TEL;TYPE=WORK,VOICE,MSG:${DIRECT_CONTACT.workPhoneRaw}`);
-    } else {
-      lines.push(`TEL;TYPE=WORK,VOICE,MSG,PREF:${DIRECT_CONTACT.workPhoneRaw}`);
-    }
-
-    lines.push(`EMAIL;TYPE=WORK,INTERNET,PREF:${DIRECT_CONTACT.email}`);
-    lines.push(`URL;TYPE=WORK:${DIRECT_CONTACT.website}`);
-    lines.push('ADR;TYPE=WORK:;;1100 Rue du Belier;Lafayette;LA;70506;USA');
-    lines.push(`X-SOCIALPROFILE;type=facebook:${DIRECT_CONTACT.facebook}`);
-    lines.push(`X-SOCIALPROFILE;type=instagram:${DIRECT_CONTACT.instagram}`);
-
-    const phoneNote = shareCellPhone
-      ? `Mobile Phone: ${DIRECT_CONTACT.mobilePhone} (Direct). Work Phone: ${DIRECT_CONTACT.workPhone} (Company textable line).`
-      : `Work Phone: ${DIRECT_CONTACT.workPhone} (Company textable line).`;
-
-    lines.push(`NOTE:Charley Braun — Service Department Manager at ${DIRECT_CONTACT.company} (The Backyard Place). ${phoneNote} Authorized warranty service dealer for Hayward, Pentair, and Fluidra (Jandy, Polaris, Zodiac). Pool equipment diagnostics, warranty repairs, computerized water analysis, and pool chemicals. Website: ${DIRECT_CONTACT.website}. Address: ${DIRECT_CONTACT.address}.${eventNote}`);
-
-    const cats = shareCellPhone
-      ? 'CATEGORIES:Pool Service,Warranty Dealer,Hayward,Pentair,Fluidra,Water Testing,Pool Equipment,VIP Contact,Cricket\'s Pool And Spa World'
-      : 'CATEGORIES:Pool Service,Warranty Dealer,Hayward,Pentair,Fluidra,Water Testing,Pool Equipment,Cricket\'s Pool And Spa World';
-    lines.push(cats);
-    lines.push('REV:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z');
-    lines.push('END:VCARD');
 
     return lines.join('\r\n');
   }
@@ -534,18 +458,13 @@
 
     const a = document.createElement('a');
     a.href = url;
-    const suffix = shareCellPhone ? 'VIP_Direct' : 'Store';
-    a.download = `Charley_Braun_Crickets_Pool_${suffix}.vcf`;
+    a.download = `Crickets_Pool_Service_Dept.vcf`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
-    if (shareCellPhone) {
-      showToast('Contact (.vcf) with Direct Mobile downloaded!');
-    } else {
-      showToast('Work Contact (.vcf) downloaded — tap to save!');
-    }
+    showToast('Company Contact (.vcf) downloaded — tap to save!');
   }
 
   function updateVcfPreviewText() {
@@ -558,16 +477,11 @@
     if (!vcfFieldsList) return;
     const cardTitle = CARDS[currentCardId] ? CARDS[currentCardId].title : DIRECT_CONTACT.title;
 
-    const cellRow = shareCellPhone
-      ? `<li>${iconSvg('phone')} <span><strong>Mobile Phone:</strong> ${DIRECT_CONTACT.mobilePhone} <em style="color:var(--accent-cyan-hover); font-style:normal; font-weight:700;">(Selectable share active)</em></span></li>`
-      : `<li>${iconSvg('phone')} <span style="opacity:0.65;"><strong>Mobile Phone:</strong> <em>Hidden (selectable to only share with certain contacts)</em></span></li>`;
-
     vcfFieldsList.innerHTML = `
-      <li>${iconSvg('star')} <span><strong>Full Name:</strong> ${DIRECT_CONTACT.name}</span></li>
-      <li>${iconSvg('globe')} <span><strong>Business Name:</strong> ${DIRECT_CONTACT.company}</span></li>
+      <li>${iconSvg('star')} <span><strong>Business Name:</strong> ${DIRECT_CONTACT.name}</span></li>
+      <li>${iconSvg('globe')} <span><strong>Department:</strong> ${DIRECT_CONTACT.department}</span></li>
       <li>${iconSvg('shield')} <span><strong>Title:</strong> ${cardTitle}</span></li>
-      <li>${iconSvg('phone')} <span><strong>Work Phone:</strong> ${DIRECT_CONTACT.workPhone} (Company textable line)</span></li>
-      ${cellRow}
+      <li>${iconSvg('phone')} <span><strong>Office Line:</strong> ${DIRECT_CONTACT.workPhone} (Voice &amp; Text Line)</span></li>
       <li>${iconSvg('mail')} <span><strong>Email:</strong> ${DIRECT_CONTACT.email}</span></li>
       <li>${iconSvg('globe')} <span><strong>Website:</strong> <a href="${DIRECT_CONTACT.website}" target="_blank" rel="noopener">${DIRECT_CONTACT.website}</a></span></li>
       <li>${iconSvg('facebook')} <span><strong>Facebook Page:</strong> <a href="${DIRECT_CONTACT.facebook}" target="_blank" rel="noopener">Cricket's Pool and Spa World</a></span></li>
@@ -805,7 +719,7 @@
 
       const summary = document.getElementById('booking-summary-text');
       if (summary) {
-        summary.textContent = `Thank you, ${serviceReq.name}! Your service request for ${serviceReq.date} at ${serviceReq.time} has been submitted. Charley will contact you shortly.`;
+        summary.textContent = `Thank you, ${serviceReq.name}! Your service request for ${serviceReq.date} at ${serviceReq.time} has been submitted. Our service department will contact you promptly.`;
       }
 
       showToast(`Service request sent for ${serviceReq.date}`);
@@ -824,8 +738,7 @@
   const btnDownloadQr = document.getElementById('btn-download-qr');
 
   function getShareUrl() {
-    const base = window.location.origin + window.location.pathname;
-    return shareCellPhone ? `${base}?cell=1` : base;
+    return window.location.origin + window.location.pathname;
   }
 
   function openShareMode() {
@@ -850,17 +763,13 @@
     });
   }
 
-  // Copy link (reflects on-demand mobile phone query parameter)
+  // Copy link
   if (btnCopyLink) {
     btnCopyLink.addEventListener('click', async () => {
       const url = getShareUrl();
       try {
         await navigator.clipboard.writeText(url);
-        if (shareCellPhone) {
-          showToast('VIP link with direct mobile copied!');
-        } else {
-          showToast('Public store link copied!');
-        }
+        showToast('Service contact link copied!');
       } catch (err) {
         showToast('Link: ' + url);
       }
@@ -871,14 +780,12 @@
   if (btnNativeShare) {
     btnNativeShare.addEventListener('click', async () => {
       const url = getShareUrl();
-      const text = shareCellPhone
-        ? "Contact card for Charley Braun (Direct Mobile & Work), Service Department Manager at Cricket's Pool And Spa World, Inc."
-        : "Contact card for Charley Braun, Service Department Manager at Cricket's Pool And Spa World, Inc.";
+      const text = "Digital contact card for Cricket's Pool And Spa World, Inc. — Service Department. Voice & Text: (337) 984-7626. Factory authorized warranty dealer for Hayward, Pentair, and Fluidra.";
 
       if (navigator.share) {
         try {
           await navigator.share({
-            title: "Charley Braun | Cricket's Pool And Spa World, Inc.",
+            title: "Cricket's Pool And Spa World, Inc. | Service Department",
             text: text,
             url: url
           });
@@ -911,7 +818,7 @@
 
     const qrUrlText = document.getElementById('qr-url-text');
     if (qrUrlText) {
-      qrUrlText.textContent = shareCellPhone ? "Cricket's Pool • Direct Mobile Included" : "Cricket's Pool And Spa World, Inc. (Work Phone Only)";
+      qrUrlText.textContent = "Service Department • (337) 984-7626";
     }
   }
 
@@ -939,8 +846,7 @@
       if (!src) return;
       const a = document.createElement('a');
       a.href = src;
-      const suffix = shareCellPhone ? 'VIP_Direct' : 'Store';
-      a.download = `Charley_Braun_Crickets_Pool_${suffix}_QR.png`;
+      a.download = `Crickets_Pool_Service_Dept_QR.png`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -963,9 +869,9 @@
 
   // --- Initialization ---
   function init() {
-    renderCard('pools');
+    renderCard('warranty');
     buildCalendarDays();
-    updateCellShareUI();
+    setupCompanyContactUI();
   }
 
   if (document.readyState === 'loading') {

@@ -1,6 +1,6 @@
-# Cricket's Pool and Spa World — Contact Share Platform (Charley Braun)
+# Cricket's Pool and Spa World, Inc. — Service Department Contact Share Platform
 
-A self-hosted digital contact card, link sharing, and service consultation platform built for **Charley Braun**, Service Department Manager at [Cricket's Pool And Spa World, Inc.](http://poolandspaworld.net/) (Lafayette, LA).
+A self-hosted digital contact card, link sharing, and service consultation platform built for **Cricket's Pool And Spa World, Inc. — Service Department** in Lafayette, LA.
 
 Designed as an independent, high-performance alternative to services like **Linktree**, **Dot**, and **Blinq**, styled in a swimming pool aesthetic (deep aquatic navy, crystal cyan, lagoon blue, and water caustics).
 
@@ -8,18 +8,20 @@ Designed as an independent, high-performance alternative to services like **Link
 
 ## Highlights
 
+- **100% Company-Primary**: Branded for **Cricket's Pool And Spa World, Inc. — Service Department**, creating an evergreen contact hub that saves directly as a company contact in customer phones.
+- **Unified Voice & Text Line**: Prominently features the store textable line `(337) 984-7626` for all calls, text inquiries, and vCard downloads.
 - **Authorized Warranty Dealer**: Factory authorized warranty service dealer for **Hayward**, **Pentair**, and **Fluidra** (Jandy, Polaris, Zodiac).
 - **Service Department Hub**: Direct customer access to equipment diagnostic drop-off, warranty repair claims, and computerized pool water testing.
 - **Swimming Pool Theme**: Deep aquatic navy (`#04101e`), sunlit pool surface (`#081d33`), crystal cyan (`#06b6d4`), and azure (`#0284c7`) with underwater ambient caustic glow.
-- **Easy Contact Scaffolding**: Top configuration object in `mockup/app.js` (`DIRECT_CONTACT`) where Charley can easily paste his direct mobile, email, and social handles.
-- **One-Tap Contact Save**: Directly downloads a complete vCard 3.0 (`.vcf`) file to the customer's phone contacts (Name, Title, Company, Work Phone, Work Email, Address, Website, Social profiles).
+- **Easy Contact Scaffolding**: Top configuration object in `mockup/app.js` (`DIRECT_CONTACT`) for straightforward updates.
+- **One-Tap Contact Save**: Directly downloads a complete company vCard 3.0 (`.vcf`) file to the customer's phone contacts (Company Name, Department, Title, Voice & Text Phone, Email, Address, Website, Social profiles).
 - **Two Service Hubs**:
   - 🛠️ **Warranty & Equipment**: Authorized warranty repairs and diagnostics for Hayward, Pentair, and Fluidra (pumps, motors, filters, heaters, automation, cleaners).
   - 💧 **Water Care & Diagnostics**: Free computerized water analysis, Poolife chlorine and chemical care, and salt cell balancing.
-- **Quick Thumb Channels**: Direct 1-tap buttons for Call Work, Text Work Line, Email, and Service Request.
+- **Quick Thumb Channels**: Direct 1-tap buttons for Call Office, Text Office, Email, and Service Request.
 - **Water Testing & Equipment Drop-off Scheduling**: Smart scheduler reflecting Cricket's store hours (Mon–Fri 8:00 AM – 4:00 PM).
-- **Two-Way Customer Exchange**: In-store or expo lead capture form saving customer name, pool equipment, warranty inquiry, and contact info.
-- **QR Code & NFC Ready**: Includes built-in SVG/PNG QR code generator and full-screen event mode for trade shows.
+- **Two-Way Customer Exchange**: In-store or expo lead capture form saving customer name, pool equipment, warranty inquiry, and contact info directly to the service department.
+- **QR Code & NFC Ready**: Includes built-in SVG/PNG QR code generator and full-screen event mode for trade shows and in-store displays.
 
 ---
 
@@ -45,17 +47,20 @@ Open `mockup/app.js` and edit the `DIRECT_CONTACT` object at the top of the file
 
 ```javascript
 const DIRECT_CONTACT = {
-  name: 'Charley Braun',
-  avatarInitial: 'CB',
-  title: 'Service Department Manager',
+  name: "Cricket's Pool And Spa World, Inc.",
+  displayName: "Cricket's Pool And Spa World",
+  department: "Service Department",
+  avatarInitial: 'CP',
+  title: "Service Department — Authorized Warranty Center",
   company: "Cricket's Pool And Spa World, Inc.",
-  workPhone: '(337) 984-7626',          // Company textable line
+  companySubtitle: "The Backyard Place",
+  workPhone: '(337) 984-7626',          // Unified Voice & Text line
   workPhoneRaw: '+13379847626',
-  mobilePhone: '(337) 577-9224',        // Selectable to only share with certain contacts
-  mobilePhoneRaw: '+13375779224',
-  email: 'charley@poolandspaworld.net',
+  email: 'charley@poolandspaworld.net', // Service inbox
   website: 'http://poolandspaworld.net/',
   address: '1100 Rue du Belier, Lafayette, LA 70506',
+  hours: 'Mon–Fri 8:00 AM – 4:00 PM • Sat–Sun Closed',
+  googleReviews: 'https://maps.google.com/?q=Cricket%27s+Pool+And+Spa+World+1100+Rue+du+Belier+Lafayette+LA',
   facebook: 'https://www.facebook.com/profile.php?id=100039496489824',
   instagram: 'https://www.instagram.com/cricketspoolandspaworld/'
 };
