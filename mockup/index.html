@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Charley Braun | Cricket's Pool and Spa World | Lafayette, LA</title>
+  <meta name="description" content="Digital contact card for Charley Braun — Swimming Pool Department Manager at Cricket's Pool and Spa World in Lafayette, LA.">
+  <meta name="theme-color" content="#04101e">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Ambient underwater caustic glow -->
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+
+  <!-- Mobile-first card container (Linktree layout) -->
+  <main class="shell" id="card-shell">
+
+    <!-- Top header bar with store branding and quick share actions -->
+    <header class="header-bar">
+      <div class="header-bar__logo-text">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        <span>Cricket's Pool &amp; Spa</span>
+      </div>
+      <div class="header-bar__actions">
+        <label class="switch switch--compact" title="Expo / Trade Show mode">
+          <input type="checkbox" id="toggle-event">
+          <span class="switch__label">Event Mode</span>
+        </label>
+        <button type="button" class="icon-btn" id="btn-fullscreen-qr" aria-label="Open full-screen QR share mode" title="Show QR code">
+          <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="14" width="3" height="3"/><rect x="14" y="18" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+        </button>
+        <button type="button" class="icon-btn" id="btn-open-share" aria-label="Share this card" title="Share contact card">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Event / Expo mode banner (appears when Event Mode toggle is active) -->
+    <aside class="event-banner" id="event-banner" role="status">
+      <div class="event-banner__left">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <span>Met at: </span><strong id="event-name">Acadiana Home &amp; Garden Show</strong>
+        </div>
+      </div>
+      <span class="event-banner__tag">Auto-tagging active</span>
+    </aside>
+
+    <!-- Profile Identity (Swimming Pool Department Manager Header) -->
+    <header class="identity">
+      <div class="avatar-wrap">
+        <div class="avatar" id="profile-avatar" aria-label="Profile initial">CB</div>
+        <div class="avatar-badge" title="Water Chemistry & Pool Equipment Specialist">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+      </div>
+      <h1 class="identity__name">
+        <span id="profile-name">Charley Braun</span>
+        <svg class="verified-icon" viewBox="0 0 24 24" title="Verified Specialist"><path d="M12 2l2.4 2.8 3.7-.4 1.2 3.5 3.3 1.7-1 3.6 1.9 3.2-2.8 2.4-.4 3.7-3.5 1.2-1.7 3.3-3.6-1-3.2 1.9-2.4-2.8-3.7.4-1.2-3.5-3.3-1.7 1-3.6-1.9-3.2 2.8-2.4.4-3.7 3.5-1.2 1.7-3.3 3.6 1 3.2-1.9z" fill="#06b6d4" stroke="none"/><polyline points="9 12 11 14 15 10" stroke="#04101e" stroke-width="2.2" fill="none"/></svg>
+      </h1>
+      <p class="identity__company" id="profile-company">Cricket's Pool and Spa World</p>
+      <p class="identity__title" id="profile-title">Swimming Pool Department Manager</p>
+      <p class="identity__loc">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span id="profile-location">1100 Rue du Belier, Lafayette, LA 70506</span>
+      </p>
+
+      <!-- Trust & Credential chips -->
+      <div class="chips" id="chips-container">
+        <!-- Dynamically rendered -->
+      </div>
+    </header>
+
+    <!-- PRIMARY ACTION: Save Contact directly to Phone Contacts (.vcf) -->
+    <div class="save-contact-hero">
+      <button type="button" class="btn btn-primary btn-save-hero" id="btn-save-vcard-top">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        <span>Save Contact (.vcf)</span>
+      </button>
+      <button type="button" class="vcf-preview-trigger" id="btn-open-vcf-info">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span>What info does this save to your phone?</span>
+      </button>
+    </div>
+
+    <!-- Quick Communication Actions (Call Store / Text Direct / Email / Service Request) -->
+    <section class="quick" aria-label="Direct contact channels">
+      <a href="tel:+13379847626" id="quick-call" class="quick__btn" aria-label="Call Store">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Call Store</span>
+      </a>
+      <a href="sms:+13379847626?&body=Hi%20Charley,%20I%20saw%20your%20contact%20card%20from%20Cricket's%20Pool%20and%20wanted%20to%20ask%20about..." id="quick-text" class="quick__btn" aria-label="Text Inquiries">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span>Text</span>
+      </a>
+      <a href="mailto:charley@poolandspaworld.net?subject=Pool%20Inquiry%20via%20Cricket's%20Contact%20Card" id="quick-email" class="quick__btn" aria-label="Email Charley">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>Email</span>
+      </a>
+      <button type="button" id="quick-service" class="quick__btn" aria-label="Request Service or Water Testing">
+        <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>Service</span>
+      </button>
+    </section>
+
+    <!-- Category Switcher (Swimming Pools vs Spas & Hot Tubs) -->
+    <div class="filter-wrap">
+      <nav class="segmented" role="tablist" aria-label="Category selector">
+        <button type="button" role="tab" id="tab-pools" aria-selected="true" aria-controls="links-container" data-card="pools">🏊‍♂️ Pools &amp; Water Care</button>
+        <button type="button" role="tab" id="tab-spas" aria-selected="false" aria-controls="links-container" data-card="spas">🛁 Spas &amp; Hot Tubs</button>
+      </nav>
+    </div>
+
+    <!-- Core Linktree Stack (Prioritizing external platforms & portals) -->
+    <section class="section section--links" aria-label="Links and portals">
+      <nav class="links" id="links-container">
+        <!-- Dynamically rendered Linktree link cards by app.js -->
+      </nav>
+    </section>
+
+    <!-- Footer -->
+    <footer class="foot">
+      <p>&copy; 2026 Cricket's Pool and Spa World, Inc. &bull; The Backyard Place</p>
+      <p class="foot__mark">1100 Rue du Belier &bull; Lafayette, LA 70506 &bull; (337) 984-7626</p>
+    </footer>
+
+    <!-- Sticky Thumb-Zone Action Bar (Bottom of screen) -->
+    <div class="dock" role="toolbar" aria-label="Primary actions">
+      <button type="button" class="btn btn-primary" id="btn-save-vcard">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        <span>Save Contact (.vcf)</span>
+      </button>
+      <button type="button" class="btn btn-secondary btn-square" id="btn-dock-share" aria-label="Share QR code">
+        <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="14" width="3" height="3"/><rect x="14" y="18" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- ======================================================================
+       Bottom Sheet: vCard (.vcf) Explanation & Field Inspector
+       ====================================================================== -->
+  <div class="sheet" id="sheet-vcf-info" role="dialog" aria-modal="true" aria-labelledby="vcf-info-title">
+    <div class="sheet__scrim" data-close="sheet-vcf-info"></div>
+    <div class="sheet__panel">
+      <div class="sheet__grab" aria-hidden="true"></div>
+      <div class="sheet__head">
+        <div>
+          <h2 class="sheet__title" id="vcf-info-title">What Info is Shared?</h2>
+          <p class="sheet__sub">When someone taps "Save Contact", iOS / Android automatically imports these details into their phone contacts.</p>
+        </div>
+        <button type="button" class="sheet__close" data-close="sheet-vcf-info" aria-label="Close sheet">
+          <svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="vcf-info-box">
+        <strong>Directly Imported Fields:</strong>
+        <ul id="vcf-fields-list">
+          <li><svg class="icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> <span><strong>Full Name:</strong> Charley Braun</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> <span><strong>Company:</strong> Cricket's Pool and Spa World, Inc.</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <span><strong>Title:</strong> Swimming Pool Department Manager</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <span><strong>Store Phone:</strong> (337) 984-7626</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg> <span><strong>Email:</strong> charley@poolandspaworld.net</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> <span><strong>Website:</strong> poolandspaworld.net</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> <span><strong>Address:</strong> 1100 Rue du Belier, Lafayette, LA 70506</span></li>
+        </ul>
+      </div>
+
+      <p class="step-label">Live Generated vCard Code:</p>
+      <pre class="vcf-code-preview" id="vcf-raw-preview"></pre>
+
+      <button type="button" class="btn btn-primary btn-block" style="margin-top:14px;" id="btn-download-vcf-from-sheet">
+        <span>Download This .vcf File</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       Bottom Sheet: Share / QR Code
+       ====================================================================== -->
+  <div class="sheet" id="sheet-share" role="dialog" aria-modal="true" aria-labelledby="share-title">
+    <div class="sheet__scrim" data-close="sheet-share"></div>
+    <div class="sheet__panel">
+      <div class="sheet__grab" aria-hidden="true"></div>
+      <div class="sheet__head">
+        <div>
+          <h2 class="sheet__title" id="share-title">Share Digital Card</h2>
+          <p class="sheet__sub">Scan with any smartphone camera — instant access.</p>
+        </div>
+        <button type="button" class="sheet__close" data-close="sheet-share" aria-label="Close share sheet">
+          <svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="qr-card">
+        <div id="qr-target" aria-label="QR Code"></div>
+        <p class="qr-card__name">Charley Braun</p>
+        <p class="qr-card__url" id="qr-url-text">Cricket's Pool and Spa World</p>
+      </div>
+
+      <div class="share-grid">
+        <button type="button" id="btn-copy-link">
+          <svg class="icon" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy Link</span>
+        </button>
+        <button type="button" id="btn-native-share">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          <span>Share</span>
+        </button>
+        <button type="button" id="btn-download-qr">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Save QR</span>
+        </button>
+        <button type="button" id="btn-fullscreen-from-sheet">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+          <span>Event QR</span>
+        </button>
+      </div>
+      <p class="hint">Works on blank NFC cards &amp; stickers for instant store contact sharing.</p>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       Bottom Sheet: Two-Way Contact / Customer Lead Exchange
+       ====================================================================== -->
+  <div class="sheet" id="sheet-exchange" role="dialog" aria-modal="true" aria-labelledby="exchange-title">
+    <div class="sheet__scrim" data-close="sheet-exchange"></div>
+    <div class="sheet__panel">
+      <div class="sheet__grab" aria-hidden="true"></div>
+      <div class="sheet__head">
+        <div>
+          <h2 class="sheet__title" id="exchange-title">Share Your Info</h2>
+          <p class="sheet__sub">Send your contact details directly to Charley Braun at Cricket's Pool.</p>
+        </div>
+        <button type="button" class="sheet__close" data-close="sheet-exchange" aria-label="Close exchange sheet">
+          <svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <form class="form" id="form-exchange">
+        <div class="field">
+          <label for="ex-name">Your Full Name *</label>
+          <input type="text" id="ex-name" name="name" required placeholder="John Smith" autocomplete="name">
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="ex-email">Email Address *</label>
+            <input type="email" id="ex-email" name="email" required placeholder="john@example.com" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="ex-phone">Phone Number</label>
+            <input type="tel" id="ex-phone" name="phone" placeholder="(337) 000-0000" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="ex-company">Pool Type / Equipment</label>
+          <input type="text" id="ex-company" name="company" placeholder="e.g. Inground Gunite, Above Ground, Salt Water, Dolphin Cleaner">
+        </div>
+
+        <div class="field">
+          <span class="label">Interested in:</span>
+          <div class="pills" role="group" aria-label="Department category">
+            <button type="button" class="pill" aria-pressed="true" data-cat="Water Testing & Chemicals">Water Testing &amp; Chemicals</button>
+            <button type="button" class="pill" aria-pressed="false" data-cat="Dolphin Robotic Cleaner">Dolphin Robotic Cleaner</button>
+            <button type="button" class="pill" aria-pressed="false" data-cat="Equipment Warranty & Repair">Equipment Warranty &amp; Repair</button>
+            <button type="button" class="pill" aria-pressed="false" data-cat="Spas & Hot Tubs">Spas &amp; Hot Tubs</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="ex-note">Notes or Questions</label>
+          <textarea id="ex-note" name="note" rows="2" placeholder="Tell Charley about your pool needs, algae issue, pump model..."></textarea>
+        </div>
+
+        <div class="tag-note" id="exchange-tag-note">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          <span>Auto-tagging: <strong id="tag-note-text">Acadiana Home Show</strong></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          <span>Send Details to Charley</span>
+          <svg class="icon" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+
+        <p class="fine">Direct to Charley Braun's department inbox. No spam, ever.</p>
+      </form>
+
+      <div class="success" id="exchange-success" style="display: none;">
+        <div class="success__badge">
+          <svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Details Received!</h3>
+        <p>Thanks for reaching out! Charley will review your pool details and follow up with you promptly.</p>
+        <button type="button" class="btn btn-secondary btn-block" data-close="sheet-exchange">Done</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       Bottom Sheet: Pool Water Testing & Equipment Service Consultation
+       ====================================================================== -->
+  <div class="sheet" id="sheet-booking" role="dialog" aria-modal="true" aria-labelledby="booking-title">
+    <div class="sheet__scrim" data-close="sheet-booking"></div>
+    <div class="sheet__panel">
+      <div class="sheet__grab" aria-hidden="true"></div>
+      <div class="sheet__head">
+        <div>
+          <h2 class="sheet__title" id="booking-title">Water Testing &amp; Service Request</h2>
+          <p class="sheet__sub">Drop off your water sample or schedule equipment inspection at 1100 Rue du Belier.</p>
+        </div>
+        <button type="button" class="sheet__close" data-close="sheet-booking" aria-label="Close booking sheet">
+          <svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div id="booking-form-wrap">
+        <p class="step-label">1. Preferred Day</p>
+        <div class="days" id="calendar-days" role="group" aria-label="Available store days">
+          <!-- Populated dynamically: 10 upcoming days -->
+        </div>
+
+        <p class="step-label">2. Target Time Window</p>
+        <div class="times" id="calendar-times" role="group" aria-label="Available store hours">
+          <!-- Populated based on store hours (Mon-Fri 8am - 4pm) -->
+        </div>
+        <p class="book-meta" id="time-note">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg>
+          <span id="time-note-text">Store open Mon–Fri 8:00 AM – 4:00 PM for water testing &amp; equipment drop-off.</span>
+        </p>
+
+        <p class="step-label">3. Your Contact Details</p>
+        <form class="form" id="form-booking">
+          <div class="field">
+            <label for="bk-name">Full Name *</label>
+            <input type="text" id="bk-name" required placeholder="John Smith" autocomplete="name">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="bk-email">Email *</label>
+              <input type="email" id="bk-email" required placeholder="john@example.com" autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="bk-phone">Phone *</label>
+              <input type="tel" id="bk-phone" required placeholder="(337) 555-1234" autocomplete="tel">
+            </div>
+          </div>
+          <div class="field">
+            <label for="bk-location">Pool Details / Service Needed</label>
+            <input type="text" id="bk-location" placeholder="e.g. Water sample analysis, Dolphin cleaner repair, Pump diagnostic">
+          </div>
+          <div class="field">
+            <label for="bk-notes">Additional Notes</label>
+            <textarea id="bk-notes" rows="2" placeholder="Tell Charley about pool gallonage, water cloudiness, or equipment serial number..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            <span>Submit Service Request</span>
+            <svg class="icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </form>
+      </div>
+
+      <div class="success" id="booking-success" style="display: none;">
+        <div class="success__badge">
+          <svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Request Submitted!</h3>
+        <p id="booking-summary-text">Thank you! Charley will review your service request and contact you shortly.</p>
+        <button type="button" class="btn btn-secondary btn-block" data-close="sheet-booking">Done</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Full-Screen QR Share Mode -->
+  <div class="share-mode" id="share-mode" role="dialog" aria-modal="true" aria-label="Full-screen QR Code">
+    <button type="button" class="icon-btn share-mode__close" id="btn-close-share-mode" aria-label="Close full-screen QR mode">
+      <svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="qr-card">
+      <div id="fullscreen-qr-target" aria-label="Full-screen QR Code"></div>
+      <p class="qr-card__name">Charley Braun</p>
+      <p class="qr-card__url">Cricket's Pool and Spa World</p>
+    </div>
+    <p class="share-mode__tip">
+      <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <span>Scan with smartphone camera to save Charley's contact info.</span>
+    </p>
+  </div>
+
+  <!-- Toast notification -->
+  <aside class="toast" id="toast" role="status" aria-live="polite">
+    <svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toast-text">Contact saved!</span>
+  </aside>
+
+  <!-- QRCode generator lib -->
+  <script src="vendor/qrcode.js"></script>
+  <!-- Application logic -->
+  <script src="app.js"></script>
+</body>
+</html>

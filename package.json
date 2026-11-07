@@ -1,0 +1,13 @@
+{
+  "name": "charley-crickets-contact",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Digital contact sharing & link card for Charley Braun - Swimming Pool Department Manager at Cricket's Pool and Spa World",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.158.0"
+  }
+}
