@@ -35,9 +35,25 @@ charley-crickets-contact/
 │   ├── index.html          # Clean Linktree-style contact layout & bottom sheets
 │   ├── styles.css          # Swimming pool design tokens & caustics styling
 │   ├── app.js              # DIRECT_CONTACT config, vCard generator & state
+│   ├── crickets-service.vcf# Direct static vCard 3.0 download file
+│   ├── contact.vcf         # Alias static vCard download file
 │   └── vendor/qrcode.js    # Embedded offline QR code generator
 └── README.md
 ```
+
+---
+
+## Direct .vcf Download Links
+
+You can link directly to the `.vcf` file from any website, email signature, NFC chip, or SMS auto-reply:
+
+1. **Direct static file link** (Immediately opens phone's "Add to Contacts" prompt):
+   - `https://your-domain.com/crickets-service.vcf`
+   - `https://your-domain.com/contact.vcf`
+
+2. **Auto-download query parameter** (Opens the card UI and instantly triggers download):
+   - `https://your-domain.com/?vcf=1`
+   - `https://your-domain.com/?download=1`
 
 ---
 

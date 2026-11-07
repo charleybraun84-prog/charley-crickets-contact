@@ -38,6 +38,20 @@
     instagram: 'https://www.instagram.com/cricketspoolandspaworld/'
   };
 
+  // Auto-download direct .vcf if visited with ?download=1, ?vcf=1, or #download
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('download') === '1' || urlParams.get('vcf') === '1' || window.location.hash === '#download' || window.location.hash === '#vcf') {
+      window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+          generateVCard();
+        }, 350);
+      });
+    }
+  } catch (e) {
+    console.warn('URL param parse error:', e);
+  }
+
   // --- Two Service Profiles: Warranty & Equipment vs Water Care & Diagnostics ---
   const CARDS = {
     warranty: {
@@ -772,6 +786,29 @@
         showToast('Service contact link copied!');
       } catch (err) {
         showToast('Link: ' + url);
+      }
+    });
+  }
+
+  // Direct .vcf URL helper & copy handler
+  function getDirectVcfUrl() {
+    return new URL('crickets-service.vcf', window.location.href).href;
+  }
+
+  const btnCopyVcfLink = document.getElementById('btn-copy-vcf-link');
+  const directVcfUrlText = document.getElementById('direct-vcf-url-text');
+  if (directVcfUrlText && window.location.hostname) {
+    directVcfUrlText.textContent = `${window.location.hostname}/crickets-service.vcf`;
+  }
+
+  if (btnCopyVcfLink) {
+    btnCopyVcfLink.addEventListener('click', async () => {
+      const vcfUrl = getDirectVcfUrl();
+      try {
+        await navigator.clipboard.writeText(vcfUrl);
+        showToast('Direct .vcf link copied!');
+      } catch (err) {
+        showToast('Direct link: ' + vcfUrl);
       }
     });
   }
