@@ -1,6 +1,6 @@
 # Cricket's Pool and Spa World — Contact Share Platform (Charley Braun)
 
-A self-hosted digital contact card, link sharing, and service consultation platform built for **Charley Braun**, Swimming Pool Department Manager at [Cricket's Pool and Spa World, Inc.](https://poolandspaworld.net/) (Lafayette, LA).
+A self-hosted digital contact card, link sharing, and service consultation platform built for **Charley Braun**, Service Department Manager at [Cricket's Pool And Spa World, Inc.](http://poolandspaworld.net/) (Lafayette, LA).
 
 Designed as an independent, high-performance alternative to services like **Linktree**, **Dot**, and **Blinq**, styled in a swimming pool aesthetic (deep aquatic navy, crystal cyan, lagoon blue, and water caustics).
 
@@ -8,16 +8,18 @@ Designed as an independent, high-performance alternative to services like **Link
 
 ## Highlights
 
+- **Authorized Warranty Dealer**: Factory authorized warranty service dealer for **Hayward**, **Pentair**, and **Fluidra** (Jandy, Polaris, Zodiac).
+- **Service Department Hub**: Direct customer access to equipment diagnostic drop-off, warranty repair claims, and computerized pool water testing.
 - **Swimming Pool Theme**: Deep aquatic navy (`#04101e`), sunlit pool surface (`#081d33`), crystal cyan (`#06b6d4`), and azure (`#0284c7`) with underwater ambient caustic glow.
 - **Easy Contact Scaffolding**: Top configuration object in `mockup/app.js` (`DIRECT_CONTACT`) where Charley can easily paste his direct mobile, email, and social handles.
-- **One-Tap Contact Save**: Directly downloads a complete vCard 3.0 (`.vcf`) file to the customer's phone contacts (Name, Title, Company, Store Phone, Work Email, Address, Website).
-- **Two Category Hubs**:
-  - 🏊‍♂️ **Pools & Water Care**: Water testing, chemical care (Poolife, salt systems), Maytronics Dolphin robotic pool cleaners, and equipment warranty repairs.
-  - 🛁 **Spas & Hot Tubs**: FreeFlow Spas, Garden Leisure luxury hot tubs, Sirona spa care, and showroom hours.
-- **Quick Thumb Channels**: Direct 1-tap buttons for Call Store, Text Inquiries, Email, and Service Request.
+- **One-Tap Contact Save**: Directly downloads a complete vCard 3.0 (`.vcf`) file to the customer's phone contacts (Name, Title, Company, Work Phone, Work Email, Address, Website, Social profiles).
+- **Two Service Hubs**:
+  - 🛠️ **Warranty & Equipment**: Authorized warranty repairs and diagnostics for Hayward, Pentair, and Fluidra (pumps, motors, filters, heaters, automation, cleaners).
+  - 💧 **Water Care & Diagnostics**: Free computerized water analysis, Poolife chlorine and chemical care, and salt cell balancing.
+- **Quick Thumb Channels**: Direct 1-tap buttons for Call Work, Text Work Line, Email, and Service Request.
 - **Water Testing & Equipment Drop-off Scheduling**: Smart scheduler reflecting Cricket's store hours (Mon–Fri 8:00 AM – 4:00 PM).
-- **Two-Way Customer Exchange**: In-store or expo lead capture form saving customer name, pool type, inquiry notes, and contact info.
-- **QR Code & NFC Ready**: Includes built-in SVG/PNG QR code generator and full-screen event mode for trade shows (e.g. Home & Garden Shows).
+- **Two-Way Customer Exchange**: In-store or expo lead capture form saving customer name, pool equipment, warranty inquiry, and contact info.
+- **QR Code & NFC Ready**: Includes built-in SVG/PNG QR code generator and full-screen event mode for trade shows.
 
 ---
 
@@ -31,7 +33,7 @@ charley-crickets-contact/
 │   ├── index.html          # Clean Linktree-style contact layout & bottom sheets
 │   ├── styles.css          # Swimming pool design tokens & caustics styling
 │   ├── app.js              # DIRECT_CONTACT config, vCard generator & state
-│   └── qrcode.min.js       # Embedded offline QR code generator
+│   └── vendor/qrcode.js    # Embedded offline QR code generator
 └── README.md
 ```
 
@@ -45,7 +47,7 @@ Open `mockup/app.js` and edit the `DIRECT_CONTACT` object at the top of the file
 const DIRECT_CONTACT = {
   name: 'Charley Braun',
   avatarInitial: 'CB',
-  title: 'Swimming Pool Department Manager',
+  title: 'Service Department Manager',
   company: "Cricket's Pool And Spa World, Inc.",
   workPhone: '(337) 984-7626',          // Company textable line
   workPhoneRaw: '+13379847626',

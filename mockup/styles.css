@@ -352,9 +352,9 @@ svg.icon { width: 20px; height: 20px; flex-shrink: 0; stroke: currentColor; fill
   background: linear-gradient(135deg, var(--accent-cyan), var(--accent-azure));
   color: #fff; box-shadow: 0 4px 14px rgba(6, 182, 212, 0.35);
 }
-.filter-wrap .segmented button[data-card="spas"][aria-selected="true"] {
-  background: linear-gradient(135deg, #0d9488, #059669);
-  color: #fff; box-shadow: 0 4px 14px rgba(13, 148, 136, 0.35);
+.filter-wrap .segmented button[data-card="water"][aria-selected="true"] {
+  background: linear-gradient(135deg, #0284c7, #06b6d4);
+  color: #fff; box-shadow: 0 4px 14px rgba(6, 182, 212, 0.35);
 }
 
 /* ---------- Core Linktree Stack (Priority Navigating to Links) ---------- */
@@ -403,6 +403,18 @@ svg.icon { width: 20px; height: 20px; flex-shrink: 0; stroke: currentColor; fill
 .link__badge--cyan {
   background: rgba(6, 182, 212, 0.22); color: #a5f3fc;
   border: 1px solid rgba(34, 211, 238, 0.35);
+}
+.link__badge--hayward {
+  background: rgba(2, 132, 199, 0.25); color: #7dd3fc;
+  border: 1px solid rgba(56, 189, 248, 0.45);
+}
+.link__badge--pentair {
+  background: rgba(6, 182, 212, 0.25); color: #a5f3fc;
+  border: 1px solid rgba(34, 211, 238, 0.45);
+}
+.link__badge--fluidra {
+  background: rgba(16, 185, 129, 0.25); color: #6ee7b7;
+  border: 1px solid rgba(52, 211, 153, 0.45);
 }
 .link__badge--teal {
   background: rgba(13, 148, 136, 0.22); color: #99f6e4;

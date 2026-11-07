@@ -1,7 +1,7 @@
 /* ==========================================================================
    Cricket's Pool and Spa World — Contact Share Card Application Logic
    Hosted at: poolandspaworld.net (or custom domain)
-   Role: Charley Braun — Swimming Pool Department Manager
+   Role: Charley Braun — Service Department Manager
    ========================================================================== */
 
 (function () {
@@ -10,6 +10,7 @@
   /* ==========================================================================
      DIRECT CONTACT DETAILS & CONFIGURATION
      👉 Business Name: Cricket's Pool And Spa World, Inc.
+     👉 Title: Service Department Manager
      👉 Address: 1100 Rue du Belier, Lafayette, LA 70506
      👉 Work Phone: (337) 984-7626 (Company textable line)
      👉 Mobile Phone: (337) 577-9224 (Selectable to only share with certain contacts)
@@ -20,7 +21,7 @@
   const DIRECT_CONTACT = {
     name: 'Charley Braun',
     avatarInitial: 'CB',
-    title: 'Swimming Pool Department Manager',
+    title: 'Service Department Manager',
     company: "Cricket's Pool And Spa World, Inc.",
     companySubtitle: 'The Backyard Place',
     workPhone: '(337) 984-7626',          // Work Phone (Company textable line)
@@ -53,21 +54,21 @@
     console.warn('URL param parse error:', e);
   }
 
-  // --- Two Category Profiles: Swimming Pools vs Spas & Hot Tubs ---
+  // --- Two Service Profiles: Warranty & Equipment vs Water Care & Diagnostics ---
   const CARDS = {
-    pools: {
-      id: 'pools',
-      sector: 'pools',
+    warranty: {
+      id: 'warranty',
+      sector: 'warranty',
       name: DIRECT_CONTACT.name,
       avatarInitial: DIRECT_CONTACT.avatarInitial,
       company: DIRECT_CONTACT.company,
-      title: 'Swimming Pool Department Manager',
-      tagline: 'Computerized water analysis, chemical balancing, Maytronics Dolphin robotic pool cleaners & equipment warranty repairs in Lafayette, LA.',
+      title: 'Service Department Manager',
+      tagline: 'Authorized warranty service dealer for Hayward, Pentair, and Fluidra (Jandy, Polaris, Zodiac). Expert pool equipment diagnostics, warranty repairs & maintenance in Lafayette, LA.',
       location: DIRECT_CONTACT.address,
       chips: [
-        { icon: 'droplet', text: 'Free Water Testing' },
-        { icon: 'shield', text: 'Dolphin Elite Dealer' },
-        { icon: 'tool', text: 'Warranty Center' }
+        { icon: 'shield', text: 'Hayward • Pentair • Fluidra' },
+        { icon: 'tool', text: 'Warranty Service Dealer' },
+        { icon: 'droplet', text: 'Diagnostics & Repair' }
       ],
       socials: [
         { label: 'Work Phone', sub: DIRECT_CONTACT.workPhone, url: `tel:${DIRECT_CONTACT.workPhoneRaw}`, icon: 'phone' },
@@ -79,43 +80,54 @@
       links: [
         {
           featured: true,
-          label: 'Official Store Website',
-          sub: 'poolandspaworld.net — The Backyard Place in Lafayette',
-          url: DIRECT_CONTACT.website,
-          icon: 'globe',
-          badge: 'Official Site'
+          label: 'Authorized Warranty Service Dealer',
+          sub: 'Certified warranty dealer for Hayward, Pentair & Fluidra (Jandy / Polaris / Zodiac)',
+          url: 'http://poolandspaworld.net/services',
+          icon: 'shield',
+          badge: 'Warranty Dealer'
         },
         {
           isDivider: true,
-          label: 'Services & Water Care'
+          label: 'Manufacturer Warranty Dealerships'
         },
         {
-          label: 'Free Computerized Water Testing',
-          sub: 'Bring your pool water sample to 1100 Rue du Belier for computerized analysis',
+          label: 'Hayward Authorized Warranty Dealer',
+          sub: 'Factory warranty service: pumps, filters, heaters, Omni automation & salt chlorination systems',
           url: 'http://poolandspaworld.net/services',
-          icon: 'droplet',
-          badge: 'Free Test'
+          icon: 'shield',
+          badge: 'Hayward'
         },
         {
-          label: 'Maytronics Dolphin Cleaners & Service',
-          sub: 'Elite dealer in Lafayette — robot sales, diagnostics & certified parts',
+          label: 'Pentair Authorized Warranty Dealer',
+          sub: 'IntelliFlo variable speed pumps, MasterTemp heaters, Clean & Clear filtration & automation service',
           url: 'http://poolandspaworld.net/services',
-          icon: 'tool',
-          badge: 'Elite Dealer'
+          icon: 'shield',
+          badge: 'Pentair'
         },
         {
-          label: 'Pool Chemicals & Sanitizers',
-          sub: 'Poolife chlorine, shock, algaecides & Hayward salt cell systems',
-          url: 'http://poolandspaworld.net/poolife',
-          icon: 'droplet',
-          badge: 'Supplies'
+          label: 'Fluidra Authorized Warranty Dealer',
+          sub: 'Certified service for Jandy equipment, Polaris pressure & suction cleaners, valves & TruClear systems',
+          url: 'http://poolandspaworld.net/services',
+          icon: 'shield',
+          badge: 'Fluidra'
         },
         {
-          label: 'Equipment Warranty & Repair Center',
-          sub: 'Authorized service: Maytronics, Hayward, Pentair, Jandy & Polaris',
+          isDivider: true,
+          label: 'Diagnostics & Drop-Off Service'
+        },
+        {
+          label: 'Equipment Diagnostic & Repair Center',
+          sub: 'Bench diagnostics, factory warranty claims, motor rebuilds & certified OEM parts',
           url: 'http://poolandspaworld.net/services',
           icon: 'tool',
           badge: 'Service'
+        },
+        {
+          label: 'Schedule Equipment Inspection & Drop-Off',
+          sub: 'Drop off pumps, motors, or equipment at 1100 Rue du Belier: Mon–Fri 8:00 AM – 4:00 PM',
+          url: 'http://poolandspaworld.net/services',
+          icon: 'calendar',
+          badge: 'Drop-off'
         },
         {
           isDivider: true,
@@ -144,28 +156,35 @@
           icon: 'instagram',
           channelClass: 'link--instagram',
           badge: 'Instagram'
+        },
+        {
+          label: 'Official Store Website',
+          sub: 'poolandspaworld.net — The Backyard Place in Lafayette',
+          url: DIRECT_CONTACT.website,
+          icon: 'globe',
+          badge: 'Official Site'
         }
       ],
-      defaultCategory: 'Water Testing & Chemicals'
+      defaultCategory: 'Hayward Warranty & Repair'
     },
 
-    spas: {
-      id: 'spas',
-      sector: 'spas',
+    water: {
+      id: 'water',
+      sector: 'water',
       name: DIRECT_CONTACT.name,
       avatarInitial: DIRECT_CONTACT.avatarInitial,
       company: DIRECT_CONTACT.company,
-      title: 'Spa & Hot Tub Specialist',
-      tagline: 'Luxury hydrotherapy, energy-efficient plug-and-play spas, and Sirona spa water care systems in Lafayette, LA.',
+      title: 'Service Department Manager',
+      tagline: 'Free computerized pool water testing, Poolife chemical care, salt cell balancing & water clarity troubleshooting in Lafayette, LA.',
       location: DIRECT_CONTACT.address,
       chips: [
-        { icon: 'spa', text: 'FreeFlow & Garden Leisure' },
-        { icon: 'droplet', text: 'Sirona Spa Care' },
-        { icon: 'sun', text: 'Showroom Displays' }
+        { icon: 'droplet', text: 'Free Water Testing' },
+        { icon: 'shield', text: 'Poolife Care Center' },
+        { icon: 'tool', text: 'Salt System Diagnostics' }
       ],
       socials: [
         { label: 'Work Phone', sub: DIRECT_CONTACT.workPhone, url: `tel:${DIRECT_CONTACT.workPhoneRaw}`, icon: 'phone' },
-        { label: 'Spas Showroom', sub: 'poolandspaworld.net/spas', url: 'http://poolandspaworld.net/swimming-pool-products/spas', icon: 'spa' },
+        { label: 'Store Website', sub: 'poolandspaworld.net', url: DIRECT_CONTACT.website, icon: 'globe' },
         { label: 'Facebook', sub: "Cricket's Pool & Spa", url: DIRECT_CONTACT.facebook, icon: 'facebook' },
         { label: 'Instagram', sub: "@cricketspoolandspaworld", url: DIRECT_CONTACT.instagram, icon: 'instagram' },
         { label: 'Google 4.3★', sub: 'Verified Store Reviews', url: DIRECT_CONTACT.googleReviews, icon: 'star' }
@@ -173,52 +192,59 @@
       links: [
         {
           featured: true,
-          label: 'Hot Tubs & Spas Showroom',
-          sub: 'poolandspaworld.net/swimming-pool-products/spas — Explore models',
-          url: 'http://poolandspaworld.net/swimming-pool-products/spas',
-          icon: 'spa',
-          badge: 'Showroom'
-        },
-        {
-          isDivider: true,
-          label: 'Spa Brands & Water Care'
-        },
-        {
-          label: 'FreeFlow Spas Collection',
-          sub: 'Plug-and-play, durable rotomolded energy-efficient hot tubs',
-          url: 'http://poolandspaworld.net/swimming-pool-products/spas',
-          icon: 'sun',
-          badge: 'FreeFlow'
-        },
-        {
-          label: 'Garden Leisure Luxury Spas',
-          sub: 'Premium hydrotherapy jets, ergonomic seating & LED lighting',
-          url: 'http://poolandspaworld.net/swimming-pool-products/spas',
-          icon: 'spa',
-          badge: 'Garden Leisure'
-        },
-        {
-          label: 'Sirona Spa Care System',
-          sub: 'Specialized gentle spa sanitizers, water clarity & balancing',
-          url: 'http://poolandspaworld.net/sirona',
+          label: 'Free Computerized Pool Water Testing',
+          sub: 'Bring a pool water sample to 1100 Rue du Belier for computerized analysis & prescription',
+          url: 'http://poolandspaworld.net/services',
           icon: 'droplet',
-          badge: 'Sirona'
+          badge: 'Free Test'
         },
         {
           isDivider: true,
-          label: 'Visit Showroom & Socials'
+          label: 'Pool Chemicals & Water Diagnostics'
         },
         {
-          label: 'Showroom Hours & Directions',
-          sub: 'Mon–Fri 8:00 AM – 4:00 PM • 1100 Rue du Belier, Lafayette',
+          label: 'Poolife Chlorine & Sanitizer Systems',
+          sub: 'Authorized dealer — Poolife shocks, chlorinating tablets, algaecides & clarifiers',
+          url: 'http://poolandspaworld.net/poolife',
+          icon: 'droplet',
+          badge: 'Poolife'
+        },
+        {
+          label: 'Salt Water Systems & Cell Diagnostics',
+          sub: 'Diagnostics, cell cleaning & balancing for Hayward AquaRite and Fluidra salt chlorinators',
+          url: 'http://poolandspaworld.net/services',
+          icon: 'tool',
+          badge: 'Salt Pools'
+        },
+        {
+          label: 'Water Clarity & Algae Treatment Consultation',
+          sub: 'Personalized chemical prescriptions to solve cloudy water, foaming, or algae blooms',
+          url: 'http://poolandspaworld.net/services',
+          icon: 'droplet',
+          badge: 'Water Care'
+        },
+        {
+          label: 'Drop Off Water Sample For Analysis',
+          sub: 'Store open Mon–Fri 8:00 AM – 4:00 PM for water testing drop-off at 1100 Rue du Belier',
+          url: 'http://poolandspaworld.net/services',
+          icon: 'calendar',
+          badge: 'Drop-off'
+        },
+        {
+          isDivider: true,
+          label: 'Store Info & Socials'
+        },
+        {
+          label: 'Store Location, Hours & Google Reviews',
+          sub: '1100 Rue du Belier, Lafayette, LA 70506 • 4.3★ Verified',
           url: DIRECT_CONTACT.googleReviews,
-          icon: 'pin',
+          icon: 'star',
           channelClass: 'link--google',
-          badge: 'Visit'
+          badge: '4.3 ★'
         },
         {
           label: 'Cricket’s Pool & Spa Facebook Page',
-          sub: 'Connect with Cricket’s Pool And Spa World on Facebook',
+          sub: 'Follow on Facebook for store promotions, maintenance guides & updates',
           url: DIRECT_CONTACT.facebook,
           icon: 'facebook',
           channelClass: 'link--facebook',
@@ -226,19 +252,26 @@
         },
         {
           label: 'Cricket’s Pool & Spa Instagram Profile',
-          sub: '@cricketspoolandspaworld — Showroom hot tubs & hydrotherapy spas',
+          sub: '@cricketspoolandspaworld — Photos, pool builds & announcements',
           url: DIRECT_CONTACT.instagram,
           icon: 'instagram',
           channelClass: 'link--instagram',
           badge: 'Instagram'
+        },
+        {
+          label: 'Official Store Website',
+          sub: 'poolandspaworld.net — The Backyard Place in Lafayette',
+          url: DIRECT_CONTACT.website,
+          icon: 'globe',
+          badge: 'Official Site'
         }
       ],
-      defaultCategory: 'Spas & Hot Tubs'
+      defaultCategory: 'Water Testing & Chemicals'
     }
   };
 
   // State
-  let currentCardId = 'pools';
+  let currentCardId = 'warranty';
   let isEventMode = false;
   let activeEventName = 'Acadiana Home & Garden Show';
   let selectedDateObj = null;
@@ -396,13 +429,16 @@
             <span class="link__sub">${l.sub}</span>
           </span>
         `;
-        const badgeClass = l.badge === 'Official Site' ? 'link__badge--cyan' : (l.badge === '4.3 ★' ? 'link__badge--star' : (card.sector === 'spas' ? 'link__badge--teal' : 'link__badge--cyan'));
+        let badgeClass = 'link__badge--cyan';
+        if (l.badge === 'Hayward') badgeClass = 'link__badge--hayward';
+        else if (l.badge === 'Pentair') badgeClass = 'link__badge--pentair';
+        else if (l.badge === 'Fluidra') badgeClass = 'link__badge--fluidra';
+        else if (l.badge === '4.3 ★') badgeClass = 'link__badge--star';
         const badgeHtml = l.badge ? `<span class="link__badge ${badgeClass}">${l.badge}</span>` : '';
         const arrowHtml = iconSvg('arrow');
 
         const classes = ['link'];
         if (l.featured) classes.push('link--featured');
-        if (card.sector === 'spas' && !l.featured) classes.push('link--spa');
         if (l.channelClass) classes.push(l.channelClass);
 
         return `
@@ -418,20 +454,20 @@
   }
 
   // --- Category Switcher Tabs ---
-  const tabPools = document.getElementById('tab-pools');
-  const tabSpas = document.getElementById('tab-spas');
+  const tabWarranty = document.getElementById('tab-warranty');
+  const tabWater = document.getElementById('tab-water');
 
-  if (tabPools && tabSpas) {
-    tabPools.addEventListener('click', () => {
-      tabPools.setAttribute('aria-selected', 'true');
-      tabSpas.setAttribute('aria-selected', 'false');
-      renderCard('pools');
+  if (tabWarranty && tabWater) {
+    tabWarranty.addEventListener('click', () => {
+      tabWarranty.setAttribute('aria-selected', 'true');
+      tabWater.setAttribute('aria-selected', 'false');
+      renderCard('warranty');
     });
 
-    tabSpas.addEventListener('click', () => {
-      tabSpas.setAttribute('aria-selected', 'true');
-      tabPools.setAttribute('aria-selected', 'false');
-      renderCard('spas');
+    tabWater.addEventListener('click', () => {
+      tabWater.setAttribute('aria-selected', 'true');
+      tabWarranty.setAttribute('aria-selected', 'false');
+      renderCard('water');
     });
   }
 
@@ -459,7 +495,7 @@
       'N:Braun;Charley;;;',
       `FN:${DIRECT_CONTACT.name}`,
       `ORG:${DIRECT_CONTACT.company}`,
-      `TITLE:${card.title}`
+      `TITLE:${DIRECT_CONTACT.title}`
     ];
 
     if (shareCellPhone) {
@@ -479,11 +515,11 @@
       ? `Mobile Phone: ${DIRECT_CONTACT.mobilePhone} (Direct). Work Phone: ${DIRECT_CONTACT.workPhone} (Company textable line).`
       : `Work Phone: ${DIRECT_CONTACT.workPhone} (Company textable line).`;
 
-    lines.push(`NOTE:Charley Braun — Swimming Pool Department Manager at ${DIRECT_CONTACT.company} (The Backyard Place). ${phoneNote} Free computerized water analysis, Maytronics Dolphin robotic pool cleaners, warranty center, chemicals, and hot tubs. Website: ${DIRECT_CONTACT.website}. Address: ${DIRECT_CONTACT.address}.${eventNote}`);
+    lines.push(`NOTE:Charley Braun — Service Department Manager at ${DIRECT_CONTACT.company} (The Backyard Place). ${phoneNote} Authorized warranty service dealer for Hayward, Pentair, and Fluidra (Jandy, Polaris, Zodiac). Pool equipment diagnostics, warranty repairs, computerized water analysis, and pool chemicals. Website: ${DIRECT_CONTACT.website}. Address: ${DIRECT_CONTACT.address}.${eventNote}`);
 
     const cats = shareCellPhone
-      ? 'CATEGORIES:Swimming Pools,Pool Supplies,Water Testing,VIP Contact,Hot Tubs,Cricket\'s Pool And Spa World'
-      : 'CATEGORIES:Swimming Pools,Pool Supplies,Water Testing,Equipment,Hot Tubs,Cricket\'s Pool And Spa World';
+      ? 'CATEGORIES:Pool Service,Warranty Dealer,Hayward,Pentair,Fluidra,Water Testing,Pool Equipment,VIP Contact,Cricket\'s Pool And Spa World'
+      : 'CATEGORIES:Pool Service,Warranty Dealer,Hayward,Pentair,Fluidra,Water Testing,Pool Equipment,Cricket\'s Pool And Spa World';
     lines.push(cats);
     lines.push('REV:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z');
     lines.push('END:VCARD');
@@ -836,8 +872,8 @@
     btnNativeShare.addEventListener('click', async () => {
       const url = getShareUrl();
       const text = shareCellPhone
-        ? "Contact card for Charley Braun (Direct Mobile & Work), Swimming Pool Department Manager at Cricket's Pool And Spa World, Inc."
-        : "Contact card for Charley Braun, Swimming Pool Department Manager at Cricket's Pool And Spa World, Inc.";
+        ? "Contact card for Charley Braun (Direct Mobile & Work), Service Department Manager at Cricket's Pool And Spa World, Inc."
+        : "Contact card for Charley Braun, Service Department Manager at Cricket's Pool And Spa World, Inc.";
 
       if (navigator.share) {
         try {
