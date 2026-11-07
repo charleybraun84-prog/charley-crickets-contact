@@ -112,20 +112,6 @@ svg.icon { width: 20px; height: 20px; flex-shrink: 0; stroke: currentColor; fill
   }
 }
 
-/* ---------- Header Banner ---------- */
-.header-bar {
-  position: relative; padding: 16px 18px 12px;
-  display: flex; align-items: center; justify-content: space-between;
-  border-bottom: 1px solid var(--border-color);
-  background: linear-gradient(180deg, rgba(6, 182, 212, 0.08), transparent);
-}
-.header-bar__logo-text {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 13.5px; font-weight: 800; letter-spacing: .02em;
-  color: var(--accent-cyan-hover); text-transform: uppercase;
-}
-.header-bar__logo-text svg { width: 18px; height: 18px; color: var(--accent-cyan); }
-.header-bar__actions { display: flex; align-items: center; gap: 8px; }
 .icon-btn {
   width: 36px; height: 36px; border-radius: 50%;
   display: grid; place-items: center;
@@ -135,24 +121,8 @@ svg.icon { width: 20px; height: 20px; flex-shrink: 0; stroke: currentColor; fill
 .icon-btn:hover { background: var(--bg-card-hover); color: var(--accent-cyan-hover); border-color: var(--accent-cyan); transform: translateY(-1px); }
 .icon-btn svg.icon { width: 17px; height: 17px; }
 
-/* Store / Event banner */
-.event-banner {
-  margin: 12px 18px 0;
-  display: none; align-items: center; justify-content: space-between; gap: 10px;
-  padding: 10px 14px; border-radius: var(--radius-md);
-  background: rgba(6, 182, 212, 0.14); border: 1px solid rgba(34, 211, 238, 0.35);
-  font-size: 13px; color: #cffafe;
-  animation: slideUp .4s var(--ease);
-}
-.event-banner.is-on { display: flex; }
-.event-banner__left { display: flex; align-items: center; gap: 8px; }
-.event-banner svg.icon { color: var(--accent-cyan-hover); width: 17px; height: 17px; }
-.event-banner strong { font-weight: 700; color: #fff; }
-.event-banner__tag { font-size: 11px; padding: 2px 7px; border-radius: 999px; background: rgba(6, 182, 212, 0.28); color: #fff; font-weight: 600; }
-@keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-
 /* ---------- Identity (Linktree Profile Header) ---------- */
-.identity { position: relative; padding: 22px 18px 0; text-align: center; }
+.identity { position: relative; padding: 28px 18px 0; text-align: center; }
 .avatar-wrap {
   position: relative;
   display: inline-block;

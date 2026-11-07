@@ -52,6 +52,49 @@
     console.warn('URL param parse error:', e);
   }
 
+  // --- Common Platform & Contact Links (Prioritized at the top of the stack) ---
+  const PLATFORM_LINKS = [
+    {
+      featured: true,
+      label: 'Official Store Website',
+      sub: 'poolandspaworld.net — The Backyard Place in Lafayette',
+      url: DIRECT_CONTACT.website,
+      icon: 'globe',
+      badge: 'Official Site'
+    },
+    {
+      label: 'Cricket’s Pool & Spa Facebook Page',
+      sub: 'Follow on Facebook for store promotions, maintenance guides & updates',
+      url: DIRECT_CONTACT.facebook,
+      icon: 'facebook',
+      channelClass: 'link--facebook',
+      badge: 'Facebook'
+    },
+    {
+      label: 'Cricket’s Pool & Spa Instagram Profile',
+      sub: '@cricketspoolandspaworld — Photos, pool builds & announcements',
+      url: DIRECT_CONTACT.instagram,
+      icon: 'instagram',
+      channelClass: 'link--instagram',
+      badge: 'Instagram'
+    },
+    {
+      label: 'Company Office Voice & Text Line',
+      sub: '(337) 984-7626 — Call or text our service desk for fast support',
+      url: `tel:${DIRECT_CONTACT.workPhoneRaw}`,
+      icon: 'phone',
+      badge: 'Call / Text'
+    },
+    {
+      label: 'Store Location, Hours & Google Reviews',
+      sub: '1100 Rue du Belier, Lafayette, LA 70506 • 4.3★ Verified',
+      url: DIRECT_CONTACT.googleReviews,
+      icon: 'star',
+      channelClass: 'link--google',
+      badge: '4.3 ★'
+    }
+  ];
+
   // --- Two Service Profiles: Warranty & Equipment vs Water Care & Diagnostics ---
   const CARDS = {
     warranty: {
@@ -77,13 +120,10 @@
       ],
       links: [
         {
-          featured: true,
-          label: 'Authorized Warranty Service Dealer',
-          sub: 'Certified warranty dealer for Hayward, Pentair & Fluidra (Jandy / Polaris / Zodiac)',
-          url: 'http://poolandspaworld.net/services',
-          icon: 'shield',
-          badge: 'Warranty Dealer'
+          isDivider: true,
+          label: 'Platforms & Contact Info'
         },
+        ...PLATFORM_LINKS,
         {
           isDivider: true,
           label: 'Manufacturer Warranty Dealerships'
@@ -110,57 +150,11 @@
           badge: 'Fluidra'
         },
         {
-          isDivider: true,
-          label: 'Diagnostics & Drop-Off Service'
-        },
-        {
           label: 'Equipment Diagnostic & Repair Center',
           sub: 'Bench diagnostics, factory warranty claims, motor rebuilds & certified OEM parts',
           url: 'http://poolandspaworld.net/services',
           icon: 'tool',
           badge: 'Service'
-        },
-        {
-          label: 'Schedule Equipment Inspection & Drop-Off',
-          sub: 'Drop off pumps, motors, or equipment at 1100 Rue du Belier: Mon–Fri 8:00 AM – 4:00 PM',
-          url: 'http://poolandspaworld.net/services',
-          icon: 'calendar',
-          badge: 'Drop-off'
-        },
-        {
-          isDivider: true,
-          label: 'Store Info & Socials'
-        },
-        {
-          label: 'Store Location, Hours & Google Reviews',
-          sub: '1100 Rue du Belier, Lafayette, LA 70506 • 4.3★ Verified',
-          url: DIRECT_CONTACT.googleReviews,
-          icon: 'star',
-          channelClass: 'link--google',
-          badge: '4.3 ★'
-        },
-        {
-          label: 'Cricket’s Pool & Spa Facebook Page',
-          sub: 'Follow on Facebook for store promotions, maintenance guides & updates',
-          url: DIRECT_CONTACT.facebook,
-          icon: 'facebook',
-          channelClass: 'link--facebook',
-          badge: 'Facebook'
-        },
-        {
-          label: 'Cricket’s Pool & Spa Instagram Profile',
-          sub: '@cricketspoolandspaworld — Photos, pool builds & announcements',
-          url: DIRECT_CONTACT.instagram,
-          icon: 'instagram',
-          channelClass: 'link--instagram',
-          badge: 'Instagram'
-        },
-        {
-          label: 'Official Store Website',
-          sub: 'poolandspaworld.net — The Backyard Place in Lafayette',
-          url: DIRECT_CONTACT.website,
-          icon: 'globe',
-          badge: 'Official Site'
         }
       ],
       defaultCategory: 'Hayward Warranty & Repair'
@@ -189,16 +183,20 @@
       ],
       links: [
         {
-          featured: true,
+          isDivider: true,
+          label: 'Platforms & Contact Info'
+        },
+        ...PLATFORM_LINKS,
+        {
+          isDivider: true,
+          label: 'Pool Chemicals & Water Diagnostics'
+        },
+        {
           label: 'Free Computerized Pool Water Testing',
           sub: 'Bring a pool water sample to 1100 Rue du Belier for computerized analysis & prescription',
           url: 'http://poolandspaworld.net/services',
           icon: 'droplet',
           badge: 'Free Test'
-        },
-        {
-          isDivider: true,
-          label: 'Pool Chemicals & Water Diagnostics'
         },
         {
           label: 'Poolife Chlorine & Sanitizer Systems',
@@ -220,48 +218,6 @@
           url: 'http://poolandspaworld.net/services',
           icon: 'droplet',
           badge: 'Water Care'
-        },
-        {
-          label: 'Drop Off Water Sample For Analysis',
-          sub: 'Store open Mon–Fri 8:00 AM – 4:00 PM for water testing drop-off at 1100 Rue du Belier',
-          url: 'http://poolandspaworld.net/services',
-          icon: 'calendar',
-          badge: 'Drop-off'
-        },
-        {
-          isDivider: true,
-          label: 'Store Info & Socials'
-        },
-        {
-          label: 'Store Location, Hours & Google Reviews',
-          sub: '1100 Rue du Belier, Lafayette, LA 70506 • 4.3★ Verified',
-          url: DIRECT_CONTACT.googleReviews,
-          icon: 'star',
-          channelClass: 'link--google',
-          badge: '4.3 ★'
-        },
-        {
-          label: 'Cricket’s Pool & Spa Facebook Page',
-          sub: 'Follow on Facebook for store promotions, maintenance guides & updates',
-          url: DIRECT_CONTACT.facebook,
-          icon: 'facebook',
-          channelClass: 'link--facebook',
-          badge: 'Facebook'
-        },
-        {
-          label: 'Cricket’s Pool & Spa Instagram Profile',
-          sub: '@cricketspoolandspaworld — Photos, pool builds & announcements',
-          url: DIRECT_CONTACT.instagram,
-          icon: 'instagram',
-          channelClass: 'link--instagram',
-          badge: 'Instagram'
-        },
-        {
-          label: 'Official Store Website',
-          sub: 'poolandspaworld.net — The Backyard Place in Lafayette',
-          url: DIRECT_CONTACT.website,
-          icon: 'globe',
-          badge: 'Official Site'
         }
       ],
       defaultCategory: 'Water Testing & Chemicals'
@@ -270,10 +226,6 @@
 
   // State
   let currentCardId = 'warranty';
-  let isEventMode = false;
-  let activeEventName = 'Acadiana Home & Garden Show';
-  let selectedDateObj = null;
-  let selectedTimeSlot = null;
 
   // DOM elements
   const profileName = document.getElementById('profile-name');
@@ -283,11 +235,6 @@
   const profileLocation = document.getElementById('profile-location');
   const chipsContainer = document.getElementById('chips-container');
   const linksContainer = document.getElementById('links-container');
-  const eventBanner = document.getElementById('event-banner');
-  const eventNameEl = document.getElementById('event-name');
-  const toggleEvent = document.getElementById('toggle-event');
-  const exchangeTagNote = document.getElementById('exchange-tag-note');
-  const tagNoteText = document.getElementById('tag-note-text');
   const vcfRawPreview = document.getElementById('vcf-raw-preview');
   const vcfFieldsList = document.getElementById('vcf-fields-list');
 
@@ -352,12 +299,6 @@
     if (profileTitle) profileTitle.textContent = card.title;
     if (profileLocation) profileLocation.textContent = card.location;
 
-    if (card.sector === 'spas') {
-      if (profileAvatar) profileAvatar.classList.add('avatar--spa');
-    } else {
-      if (profileAvatar) profileAvatar.classList.remove('avatar--spa');
-    }
-
     // Chips
     if (chipsContainer) {
       chipsContainer.innerHTML = card.chips.map(c => `
@@ -365,7 +306,7 @@
       `).join('');
     }
 
-    // Linktree Links List (Prioritizing external platforms & portals)
+    // Linktree Links List (Prioritizing external platforms & contact info)
     if (linksContainer) {
       linksContainer.innerHTML = card.links.map(l => {
         if (l.isDivider) {
@@ -403,8 +344,7 @@
       }).join('');
     }
 
-    // Update UI elements based on state
-    updateCellShareUI();
+    setupCompanyContactUI();
   }
 
   // --- Category Switcher Tabs ---
@@ -420,29 +360,13 @@
 
     tabWater.addEventListener('click', () => {
       tabWater.setAttribute('aria-selected', 'true');
-      tabWarranty.setAttribute('aria-selected', 'false');
+      tabWater.setAttribute('aria-selected', 'false');
       renderCard('water');
-    });
-  }
-
-  // --- Event / Expo Mode Toggle ---
-  if (toggleEvent) {
-    toggleEvent.addEventListener('change', (e) => {
-      isEventMode = e.target.checked;
-      if (eventBanner) eventBanner.classList.toggle('is-on', isEventMode);
-      if (exchangeTagNote) exchangeTagNote.classList.toggle('is-on', isEventMode);
-      if (isEventMode) {
-        showToast(`Event Mode Active: Tagging contacts with "${activeEventName}"`);
-      }
-      updateVcfPreviewText();
     });
   }
 
   // --- vCard 3.0 Generation & Direct Download ---
   function buildVCardText() {
-    const card = CARDS[currentCardId];
-    const eventNote = isEventMode ? ` Met at: ${activeEventName}.` : '';
-
     const lines = [
       'BEGIN:VCARD',
       'VERSION:3.0',
@@ -456,7 +380,7 @@
       'ADR;TYPE=WORK:;;1100 Rue du Belier;Lafayette;LA;70506;USA',
       `X-SOCIALPROFILE;type=facebook:${DIRECT_CONTACT.facebook}`,
       `X-SOCIALPROFILE;type=instagram:${DIRECT_CONTACT.instagram}`,
-      `NOTE:Cricket's Pool And Spa World, Inc. — Service Department (The Backyard Place). Voice & Text line: ${DIRECT_CONTACT.workPhone}. Factory authorized warranty service dealer for Hayward, Pentair, and Fluidra (Jandy, Polaris, Zodiac). Pool equipment diagnostics, warranty repairs, computerized water analysis, and pool chemicals. Website: ${DIRECT_CONTACT.website}. Address: ${DIRECT_CONTACT.address}.${eventNote}`,
+      `NOTE:Cricket's Pool And Spa World, Inc. — Service Department (The Backyard Place). Voice & Text line: ${DIRECT_CONTACT.workPhone}. Factory authorized warranty service dealer for Hayward, Pentair, and Fluidra (Jandy, Polaris, Zodiac). Pool equipment diagnostics, warranty repairs, computerized water analysis, and pool chemicals. Website: ${DIRECT_CONTACT.website}. Address: ${DIRECT_CONTACT.address}.`,
       'CATEGORIES:Pool Service,Warranty Dealer,Hayward,Pentair,Fluidra,Water Testing,Pool Equipment,Cricket\'s Pool And Spa World',
       'REV:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
       'END:VCARD'
@@ -547,7 +471,7 @@
   const btnOpenVcfInfo = document.getElementById('btn-open-vcf-info');
   if (btnOpenVcfInfo) {
     btnOpenVcfInfo.addEventListener('click', () => {
-      updateCellShareUI();
+      setupCompanyContactUI();
       openSheet('sheet-vcf-info');
     });
   }
@@ -582,7 +506,6 @@
         category: activePill ? activePill.dataset.cat : 'General Inquiry',
         note: document.getElementById('ex-note').value.trim(),
         card: currentCardId,
-        event: isEventMode ? activeEventName : null,
         timestamp: new Date().toISOString()
       };
 
@@ -597,146 +520,6 @@
       formExchange.style.display = 'none';
       exchangeSuccess.style.display = 'block';
       showToast(`Details sent for ${lead.name}`);
-    });
-  }
-
-  function openExchangeModal() {
-    formExchange.style.display = 'grid';
-    exchangeSuccess.style.display = 'none';
-    formExchange.reset();
-    selectExchangeCategory(CARDS[currentCardId].defaultCategory);
-    openSheet('sheet-exchange');
-  }
-
-  // --- Water Testing & Service Request Calendar ---
-  const calendarDays = document.getElementById('calendar-days');
-  const calendarTimes = document.getElementById('calendar-times');
-  const formBooking = document.getElementById('form-booking');
-  const bookingSuccess = document.getElementById('booking-success');
-  const bookingFormWrap = document.getElementById('booking-form-wrap');
-  const quickService = document.getElementById('quick-service');
-
-  function buildCalendarDays() {
-    if (!calendarDays) return;
-    const days = [];
-    const today = new Date();
-    for (let i = 0; i < 10; i++) {
-      const d = new Date(today);
-      d.setDate(today.getDate() + i);
-      days.push(d);
-    }
-
-    const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    calendarDays.innerHTML = days.map((d, idx) => {
-      const dow = DOW[d.getDay()];
-      const isWeekend = d.getDay() === 0 || d.getDay() === 6;
-      const num = d.getDate();
-      const isSelected = idx === 1;
-      return `
-        <button type="button" class="day" role="radio" aria-checked="${isSelected}" aria-pressed="${isSelected}" data-date="${d.toISOString()}" data-dow="${dow}" data-weekend="${isWeekend}">
-          <span class="day__dow">${dow}</span>
-          <span class="day__num">${num}</span>
-          <span class="day__tag">${isWeekend ? 'Closed' : '8am–4pm'}</span>
-        </button>
-      `;
-    }).join('');
-
-    calendarDays.querySelectorAll('.day').forEach(b => {
-      b.addEventListener('click', () => {
-        calendarDays.querySelectorAll('.day').forEach(x => {
-          x.setAttribute('aria-checked', 'false');
-          x.setAttribute('aria-pressed', 'false');
-        });
-        b.setAttribute('aria-checked', 'true');
-        b.setAttribute('aria-pressed', 'true');
-        selectedDateObj = new Date(b.dataset.date);
-        buildTimeSlots(b.dataset.weekend === 'true');
-      });
-    });
-
-    const firstActive = calendarDays.querySelector('.day[aria-pressed="true"]');
-    if (firstActive) {
-      selectedDateObj = new Date(firstActive.dataset.date);
-      buildTimeSlots(firstActive.dataset.weekend === 'true');
-    }
-  }
-
-  function buildTimeSlots(isWeekend) {
-    if (!calendarTimes) return;
-    if (isWeekend) {
-      calendarTimes.innerHTML = `
-        <div style="grid-column: 1 / -1; padding: 14px; text-align: center; color: var(--text-dim); background: var(--bg-card); border-radius: var(--radius-md);">
-          Store closed on weekends. Please select Mon–Fri (8:00 AM – 4:00 PM).
-        </div>
-      `;
-      selectedTimeSlot = null;
-      return;
-    }
-
-    const slots = [
-      { t: '8:30 AM', sub: 'Morning Drop-off' },
-      { t: '10:00 AM', sub: 'Water Testing' },
-      { t: '11:30 AM', sub: 'Diagnostics' },
-      { t: '1:00 PM', sub: 'Afternoon Check' },
-      { t: '2:30 PM', sub: 'Equipment Service' },
-      { t: '3:30 PM', sub: 'End-of-Day' }
-    ];
-
-    calendarTimes.innerHTML = slots.map((s, idx) => `
-      <button type="button" class="time" role="radio" aria-checked="${idx === 0}" aria-pressed="${idx === 0}" data-time="${s.t}">
-        ${s.t}
-      </button>
-    `).join('');
-
-    selectedTimeSlot = slots[0].t;
-
-    calendarTimes.querySelectorAll('.time').forEach(t => {
-      t.addEventListener('click', () => {
-        calendarTimes.querySelectorAll('.time').forEach(x => {
-          x.setAttribute('aria-checked', 'false');
-          x.setAttribute('aria-pressed', 'false');
-        });
-        t.setAttribute('aria-checked', 'true');
-        t.setAttribute('aria-pressed', 'true');
-        selectedTimeSlot = t.dataset.time;
-      });
-    });
-  }
-
-  function openServiceModal() {
-    if (bookingFormWrap) bookingFormWrap.style.display = 'block';
-    if (bookingSuccess) bookingSuccess.style.display = 'none';
-    if (formBooking) formBooking.reset();
-    openSheet('sheet-booking');
-  }
-
-  if (quickService) {
-    quickService.addEventListener('click', openServiceModal);
-  }
-
-  if (formBooking) {
-    formBooking.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const serviceReq = {
-        name: document.getElementById('bk-name').value.trim(),
-        email: document.getElementById('bk-email').value.trim(),
-        phone: document.getElementById('bk-phone').value.trim(),
-        details: document.getElementById('bk-location').value.trim(),
-        notes: document.getElementById('bk-notes').value.trim(),
-        date: selectedDateObj ? selectedDateObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : 'Upcoming',
-        time: selectedTimeSlot || 'Morning Drop-Off',
-        timestamp: new Date().toISOString()
-      };
-
-      bookingFormWrap.style.display = 'none';
-      bookingSuccess.style.display = 'block';
-
-      const summary = document.getElementById('booking-summary-text');
-      if (summary) {
-        summary.textContent = `Thank you, ${serviceReq.name}! Your service request for ${serviceReq.date} at ${serviceReq.time} has been submitted. Our service department will contact you promptly.`;
-      }
-
-      showToast(`Service request sent for ${serviceReq.date}`);
     });
   }
 
@@ -830,7 +613,7 @@
           console.warn('Share dismissed');
         }
       } else {
-        btnCopyLink.click();
+        if (btnCopyLink) btnCopyLink.click();
       }
     });
   }
@@ -907,7 +690,6 @@
   // --- Initialization ---
   function init() {
     renderCard('warranty');
-    buildCalendarDays();
     setupCompanyContactUI();
   }
 
