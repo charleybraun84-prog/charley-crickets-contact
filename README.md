@@ -35,6 +35,8 @@ charley-crickets-contact/
 │   ├── index.html          # Clean Linktree-style contact layout & bottom sheets
 │   ├── styles.css          # Swimming pool design tokens & caustics styling
 │   ├── app.js              # DIRECT_CONTACT config, vCard generator & state
+│   ├── assets/             # Brand graphics from poolandspaworld.net
+│   │   └── crickets_logo.png
 │   ├── crickets-service.vcf# Direct static vCard 3.0 download file
 │   ├── contact.vcf         # Alias static vCard download file
 │   └── vendor/qrcode.js    # Embedded offline QR code generator

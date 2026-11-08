@@ -121,7 +121,7 @@
     warranty: {
       id: 'warranty',
       sector: 'warranty',
-      name: DIRECT_CONTACT.name,
+      name: DIRECT_CONTACT.displayName,
       avatarInitial: DIRECT_CONTACT.avatarInitial,
       company: DIRECT_CONTACT.company,
       title: 'Service & Maintenance Departments • Retail Store',
@@ -184,6 +184,13 @@
 
   // --- Unified Company Contact UI Setup ---
   function setupCompanyContactUI() {
+    const companyPhoneLink = document.getElementById('company-phone-link');
+    if (companyPhoneLink) {
+      companyPhoneLink.href = `tel:${DIRECT_CONTACT.workPhoneRaw}`;
+      companyPhoneLink.textContent = DIRECT_CONTACT.workPhone;
+      companyPhoneLink.setAttribute('aria-label', `Call or text office at ${DIRECT_CONTACT.workPhone}`);
+    }
+
     if (quickCall) {
       quickCall.href = `tel:${DIRECT_CONTACT.workPhoneRaw}`;
       quickCall.setAttribute('aria-label', `Call Office ${DIRECT_CONTACT.workPhone}`);
