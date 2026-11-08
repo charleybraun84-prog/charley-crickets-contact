@@ -1,7 +1,8 @@
 /* ==========================================================================
    Cricket's Pool and Spa World — Contact Share Card Application Logic
    Hosted at: poolandspaworld.net (or custom domain)
-   Profile: Cricket's Pool And Spa World, Inc. — Service Department
+   Profile: Cricket's Pool And Spa World, Inc.
+   Departments: Service Department • Maintenance Department • Retail Store
    ========================================================================== */
 
 (function () {
@@ -10,9 +11,9 @@
   /* ==========================================================================
      DIRECT CONTACT DETAILS & CONFIGURATION
      👉 Business Name: Cricket's Pool And Spa World, Inc.
-     👉 Department: Service Department — Authorized Warranty Center
+     👉 Departments: Service Department • Maintenance Department • Retail Store
      👉 Address: 1100 Rue du Belier, Lafayette, LA 70506
-     👉 Work Phone: (337) 984-7626 (Office Line)
+     👉 Work Phone: (337) 984-7626 (Voice & Text Line)
      👉 Website: http://poolandspaworld.net/
      👉 Facebook: https://www.facebook.com/profile.php?id=100039496489824
      👉 Instagram: https://www.instagram.com/cricketspoolandspaworld/
@@ -20,12 +21,11 @@
   const DIRECT_CONTACT = {
     name: "Cricket's Pool And Spa World, Inc.",
     displayName: "Cricket's Pool And Spa World",
-    department: 'Service Department',
+    department: 'Service, Maintenance & Retail Store',
     avatarInitial: 'CP',
-    title: 'Service Department — Authorized Warranty Center',
+    title: 'Service & Maintenance Departments • Retail Store',
     company: "Cricket's Pool And Spa World, Inc.",
-    companySubtitle: 'The Backyard Place',
-    workPhone: '(337) 984-7626',          // Office line
+    workPhone: '(337) 984-7626',          // Voice & Text line
     workPhoneRaw: '+13379847626',
     storePhone: '(337) 984-7626',         // Office line
     storePhoneRaw: '+13379847626',
@@ -52,15 +52,36 @@
     console.warn('URL param parse error:', e);
   }
 
-  // --- Profile & Platform Buttons (Prioritized directly on the card) ---
+  // --- Profile, Department & Platform Buttons ---
   const PROFILE_LINKS = [
     {
       featured: true,
       label: 'Official Store Website',
-      sub: 'poolandspaworld.net — The Backyard Place in Lafayette',
+      sub: 'poolandspaworld.net — Lafayette, LA',
       url: DIRECT_CONTACT.website,
       icon: 'globe',
       badge: 'Official Site'
+    },
+    {
+      label: 'Retail Store & Pool Supplies',
+      sub: 'Pool chemicals, sanitizers, equipment parts, accessories & free computerized water testing',
+      url: 'http://poolandspaworld.net/',
+      icon: 'droplet',
+      badge: 'Retail Store'
+    },
+    {
+      label: 'Maintenance Department',
+      sub: 'Professional pool maintenance, routine cleanings, seasonal service & water care',
+      url: 'http://poolandspaworld.net/services',
+      icon: 'tool',
+      badge: 'Maintenance'
+    },
+    {
+      label: 'Service Department — Warranty & Repairs',
+      sub: 'Factory warranty service (Hayward, Pentair, Fluidra), diagnostics & equipment repair',
+      url: 'http://poolandspaworld.net/services',
+      icon: 'shield',
+      badge: 'Service Dept'
     },
     {
       label: 'Cricket’s Pool & Spa Facebook Page',
@@ -79,11 +100,11 @@
       badge: 'Instagram'
     },
     {
-      label: 'Company Office Phone Line',
-      sub: '(337) 984-7626 — Call our store & service desk',
+      label: 'Company Office Voice & Text Line',
+      sub: '(337) 984-7626 — Call or text our office desk',
       url: `tel:${DIRECT_CONTACT.workPhoneRaw}`,
       icon: 'phone',
-      badge: 'Call Office'
+      badge: 'Call / Text'
     },
     {
       label: 'Store Location, Hours & Google Reviews',
@@ -103,16 +124,12 @@
       name: DIRECT_CONTACT.name,
       avatarInitial: DIRECT_CONTACT.avatarInitial,
       company: DIRECT_CONTACT.company,
-      title: 'Service Department — Authorized Warranty Center',
-      tagline: 'Authorized warranty service dealer for Hayward, Pentair, and Fluidra (Jandy, Polaris, Zodiac). Expert pool equipment diagnostics, warranty repairs & maintenance in Lafayette, LA.',
+      title: 'Service & Maintenance Departments • Retail Store',
+      tagline: 'Full service pool company in Lafayette, LA. Retail store, routine maintenance department & authorized warranty repair center for Hayward, Pentair, and Fluidra.',
       location: DIRECT_CONTACT.address,
-      chips: [
-        { icon: 'shield', text: 'Hayward • Pentair • Fluidra' },
-        { icon: 'tool', text: 'Warranty Service Dealer' },
-        { icon: 'droplet', text: 'Diagnostics & Repair' }
-      ],
+      chips: [],
       socials: [
-        { label: 'Office Phone', sub: DIRECT_CONTACT.workPhone, url: `tel:${DIRECT_CONTACT.workPhoneRaw}`, icon: 'phone' },
+        { label: 'Voice & Text', sub: DIRECT_CONTACT.workPhone, url: `tel:${DIRECT_CONTACT.workPhoneRaw}`, icon: 'phone' },
         { label: 'Store Website', sub: 'poolandspaworld.net', url: DIRECT_CONTACT.website, icon: 'globe' },
         { label: 'Facebook', sub: "Cricket's Pool & Spa", url: DIRECT_CONTACT.facebook, icon: 'facebook' },
         { label: 'Instagram', sub: "@cricketspoolandspaworld", url: DIRECT_CONTACT.instagram, icon: 'instagram' },
@@ -140,12 +157,14 @@
   // Contact action DOM elements
   const quickCall = document.getElementById('quick-call');
   const quickCallLabel = document.getElementById('quick-call-label');
+  const quickText = document.getElementById('quick-text');
+  const quickTextLabel = document.getElementById('quick-text-label');
   const saveVcardLabel = document.getElementById('save-vcard-label');
 
   // SVG icon library
   function iconSvg(name) {
     const icons = {
-      globe: '<svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+      globe: '<svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
       droplet: '<svg class="icon" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>',
       tool: '<svg class="icon" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
       calendar: '<svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
@@ -171,6 +190,12 @@
     }
     if (quickCallLabel) quickCallLabel.textContent = 'Call Office';
 
+    if (quickText) {
+      quickText.href = `sms:${DIRECT_CONTACT.workPhoneRaw}?&body=Hi%20Cricket's%20Pool%20and%20Spa%20World,%20I'm%20reaching%20out%20regarding...`;
+      quickText.setAttribute('aria-label', `Text Office Line ${DIRECT_CONTACT.workPhone}`);
+    }
+    if (quickTextLabel) quickTextLabel.textContent = 'Text Office';
+
     if (saveVcardLabel) saveVcardLabel.textContent = 'Save Company Contact (.vcf)';
 
     renderVcfFieldsList();
@@ -189,14 +214,18 @@
     if (profileTitle) profileTitle.textContent = card.title;
     if (profileLocation) profileLocation.textContent = card.location;
 
-    // Chips
+    // Chips (Clear if absent or removed)
     if (chipsContainer) {
-      chipsContainer.innerHTML = card.chips.map(c => `
-        <span class="chip">${iconSvg(c.icon)} ${c.text}</span>
-      `).join('');
+      if (card.chips && card.chips.length > 0) {
+        chipsContainer.innerHTML = card.chips.map(c => `
+          <span class="chip">${iconSvg(c.icon)} ${c.text}</span>
+        `).join('');
+      } else {
+        chipsContainer.innerHTML = '';
+      }
     }
 
-    // Linktree Links List (Prioritizing external platforms & contact info)
+    // Linktree Links List (Prioritizing external platforms, departments & contact info)
     if (linksContainer) {
       linksContainer.innerHTML = card.links.map(l => {
         if (l.isDivider) {
@@ -244,16 +273,16 @@
       'VERSION:3.0',
       'N:;Cricket\'s Pool And Spa World, Inc.;;;',
       'FN:Cricket\'s Pool And Spa World, Inc.',
-      'ORG:Cricket\'s Pool And Spa World, Inc.;Service Department',
-      'TITLE:Service Department — Authorized Warranty Center',
-      `TEL;TYPE=WORK,VOICE,PREF:${DIRECT_CONTACT.workPhoneRaw}`,
+      'ORG:Cricket\'s Pool And Spa World, Inc.;Service, Maintenance & Retail Store',
+      'TITLE:Service & Maintenance Departments • Retail Store',
+      `TEL;TYPE=WORK,VOICE,MSG,PREF:${DIRECT_CONTACT.workPhoneRaw}`,
       `EMAIL;TYPE=WORK,INTERNET,PREF:${DIRECT_CONTACT.email}`,
       `URL;TYPE=WORK:${DIRECT_CONTACT.website}`,
       'ADR;TYPE=WORK:;;1100 Rue du Belier;Lafayette;LA;70506;USA',
       `X-SOCIALPROFILE;type=facebook:${DIRECT_CONTACT.facebook}`,
       `X-SOCIALPROFILE;type=instagram:${DIRECT_CONTACT.instagram}`,
-      `NOTE:Cricket's Pool And Spa World, Inc. — Service Department (The Backyard Place). Office line: ${DIRECT_CONTACT.workPhone}. Factory authorized warranty service dealer for Hayward, Pentair, and Fluidra (Jandy, Polaris, Zodiac). Pool equipment diagnostics, warranty repairs, computerized water analysis, and pool chemicals. Website: ${DIRECT_CONTACT.website}. Address: ${DIRECT_CONTACT.address}.`,
-      'CATEGORIES:Pool Service,Warranty Dealer,Hayward,Pentair,Fluidra,Water Testing,Pool Equipment,Cricket\'s Pool And Spa World',
+      `NOTE:Cricket's Pool And Spa World, Inc. — Service Department, Maintenance Department & Retail Store. Voice & Text line: ${DIRECT_CONTACT.workPhone}. Factory authorized warranty service dealer for Hayward, Pentair, and Fluidra (Jandy, Polaris, Zodiac). Pool equipment diagnostics, warranty repairs, pool maintenance, computerized water analysis, and retail pool supplies. Website: ${DIRECT_CONTACT.website}. Address: ${DIRECT_CONTACT.address}.`,
+      'CATEGORIES:Pool Service,Maintenance,Retail Store,Warranty Dealer,Water Testing,Pool Equipment,Cricket\'s Pool And Spa World',
       'REV:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
       'END:VCARD'
     ];
@@ -289,9 +318,9 @@
 
     vcfFieldsList.innerHTML = `
       <li>${iconSvg('star')} <span><strong>Business Name:</strong> ${DIRECT_CONTACT.name}</span></li>
-      <li>${iconSvg('globe')} <span><strong>Department:</strong> ${DIRECT_CONTACT.department}</span></li>
-      <li>${iconSvg('shield')} <span><strong>Title:</strong> ${cardTitle}</span></li>
-      <li>${iconSvg('phone')} <span><strong>Office Line:</strong> ${DIRECT_CONTACT.workPhone}</span></li>
+      <li>${iconSvg('globe')} <span><strong>Departments:</strong> Service &amp; Maintenance &bull; Retail Store</span></li>
+      <li>${iconSvg('shield')} <span><strong>Services:</strong> Authorized Warranty Center (Hayward &bull; Pentair &bull; Fluidra)</span></li>
+      <li>${iconSvg('phone')} <span><strong>Office Line:</strong> ${DIRECT_CONTACT.workPhone} (Voice &amp; Text Line)</span></li>
       <li>${iconSvg('mail')} <span><strong>Email:</strong> ${DIRECT_CONTACT.email}</span></li>
       <li>${iconSvg('globe')} <span><strong>Website:</strong> <a href="${DIRECT_CONTACT.website}" target="_blank" rel="noopener">${DIRECT_CONTACT.website}</a></span></li>
       <li>${iconSvg('facebook')} <span><strong>Facebook Page:</strong> <a href="${DIRECT_CONTACT.facebook}" target="_blank" rel="noopener">Cricket's Pool and Spa World</a></span></li>
@@ -300,11 +329,9 @@
     `;
   }
 
-  const btnSaveTop = document.getElementById('btn-save-vcard-top');
   const btnSaveDock = document.getElementById('btn-save-vcard');
   const btnDownloadVcfFromSheet = document.getElementById('btn-download-vcf-from-sheet');
 
-  if (btnSaveTop) btnSaveTop.addEventListener('click', generateVCard);
   if (btnSaveDock) btnSaveDock.addEventListener('click', generateVCard);
   if (btnDownloadVcfFromSheet) btnDownloadVcfFromSheet.addEventListener('click', generateVCard);
 
@@ -472,12 +499,12 @@
   if (btnNativeShare) {
     btnNativeShare.addEventListener('click', async () => {
       const url = getShareUrl();
-      const text = "Digital contact card for Cricket's Pool And Spa World, Inc. — Service Department. Office: (337) 984-7626. Factory authorized warranty dealer for Hayward, Pentair, and Fluidra.";
+      const text = "Digital contact card for Cricket's Pool And Spa World, Inc. — Service, Maintenance & Retail Store. Voice & Text: (337) 984-7626. Factory authorized warranty dealer for Hayward, Pentair, and Fluidra.";
 
       if (navigator.share) {
         try {
           await navigator.share({
-            title: "Cricket's Pool And Spa World, Inc. | Service Department",
+            title: "Cricket's Pool And Spa World, Inc.",
             text: text,
             url: url
           });
@@ -510,7 +537,7 @@
 
     const qrUrlText = document.getElementById('qr-url-text');
     if (qrUrlText) {
-      qrUrlText.textContent = "Service Department • (337) 984-7626";
+      qrUrlText.textContent = "Service • Maintenance • Retail Store • (337) 984-7626";
     }
   }
 

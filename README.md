@@ -65,11 +65,10 @@ Open `mockup/app.js` and edit the `DIRECT_CONTACT` object at the top of the file
 const DIRECT_CONTACT = {
   name: "Cricket's Pool And Spa World, Inc.",
   displayName: "Cricket's Pool And Spa World",
-  department: "Service Department",
+  department: "Service, Maintenance & Retail Store",
   avatarInitial: 'CP',
-  title: "Service Department — Authorized Warranty Center",
+  title: "Service & Maintenance Departments • Retail Store",
   company: "Cricket's Pool And Spa World, Inc.",
-  companySubtitle: "The Backyard Place",
   workPhone: '(337) 984-7626',          // Unified Voice & Text line
   workPhoneRaw: '+13379847626',
   email: 'charley@poolandspaworld.net', // Service inbox
